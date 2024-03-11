@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -11,7 +13,8 @@ export class HomeComponent {
 
   private slideIndex = 0;
 
-  constructor() { }
+  constructor(private router: Router) { }
+
 
   ngOnInit(): void {
     this.showSlides();
@@ -33,6 +36,12 @@ export class HomeComponent {
     slides[this.slideIndex - 1].style.display = "block";
     dots[this.slideIndex - 1].className += " active";
     setTimeout(() => this.showSlides(), 2000); // Change image every 2 seconds
+  }
+
+
+
+  donateNowRedirect() {
+    this.router.navigate(['posts'])
   }
 
 
