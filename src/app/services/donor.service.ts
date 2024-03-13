@@ -7,14 +7,17 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class DonorService {
-  constructor(private httpClient:HttpClient) { }
-  loginDonor(email: string, password: string):Observable<any> {
-   return this.httpClient.post('http://localhost:8090/donor/login',{email,password});
+  constructor(private httpClient: HttpClient) { }
+  loginDonor(email: string, password: string): Observable<any> {
+    return this.httpClient.post('http://localhost:8090/donor/login', { email, password });
   }
 
-  createNewDonor(newDonor:Donor):Observable<any>
-  {
-    return this.httpClient.post('http://localhost:8090/donor',newDonor);
+  createNewDonor(newDonor: Donor): Observable<any> {
+    return this.httpClient.post('http://localhost:8090/donor', newDonor);
+  }
+  updateDonorName(id: number, newName: string): Observable<any> {
+    const url = `http://localhost:8090/donor/Name?id=${id}&newName=${newName}`;
+    return this.httpClient.patch(url, {});
   }
 }
 
