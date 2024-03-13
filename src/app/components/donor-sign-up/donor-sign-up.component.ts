@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Donor } from '../../model/donor';
 import { DonorService } from '../../services/donor.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-donor-sign-up',
   standalone: true,
@@ -13,7 +14,7 @@ import { CommonModule } from '@angular/common';
 export class DonorSignUpComponent {
   message:string="";
   errorMessage:string="";
-  constructor(private donorService:DonorService){}
+  constructor(private donorService:DonorService,private router:Router){}
   newDonor:Donor=new Donor();
   signUp()
   {
@@ -22,6 +23,7 @@ export class DonorSignUpComponent {
         next:(data)=>{
           console.log(data);
           this.message="Registered Successfully!!";
+          this.router.navigateByUrl('donor-login');
           this.errorMessage="";
         },
         error:(err)=>{
@@ -33,6 +35,4 @@ export class DonorSignUpComponent {
       }
     )
   }
-
-
 }
