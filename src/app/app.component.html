@@ -1,32 +1,27 @@
-<div >
-  <nav  *ngIf="navbarService.isNavBarVisible">
-    <!-- *ngIf="isNavBarVisible" -->
-    <ul>
-    
-      <li>
-        <a routerLink='profile' 
-         routerLinkActive="active" >Profile</a>
+<nav>
+  <ul>
+
+    <li>
+      <a routerLink='profile' routerLinkActive="active">Profile</a>
     </li>
-                
-      <li>
-          <a routerLink='home' 
-           routerLinkActive="active" >Home</a>
-      </li>
-    
-      <li>
-          <a routerLink='posts' 
-           routerLinkActive="active"  >Posts</a>
-      </li>
-    </ul>
-    </nav>
-</div>
-<div id="login">
-  <li>
-    <a routerLink='donor-login'  routerLinkActive="active"  *ngIf="isVisible" (click)="hideButton()">Login</a> 
-    <!-- *ngIf="loginbuttonService.isLoginVisible" (click)="hideNavBar()" *ngIf="isVisible" (click)="hideButton()" -->
-</li>
-</div>
+
+    <li>
+      <a routerLink='home' routerLinkActive="active">Home</a>
+    </li>
+
+    <li>
+      <a routerLink='posts' routerLinkActive="active">Posts</a>
+    </li>
+
+
+    <li>
+      <a routerLink='donor-login' routerLinkActive="active">Login</a>
+    </li>
+
+  </ul>
+</nav>
+
 
 <div>
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </div>
