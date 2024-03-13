@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 
 // }
 export class DonorProfileComponent implements OnInit {
+  // console.log("hi");
   user: any;
   message: string = "";
   errorMessage: string = "";

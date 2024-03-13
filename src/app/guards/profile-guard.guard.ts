@@ -1,56 +1,30 @@
-// import { CanActivateFn } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTree } from '@angular/router';
 
-// export const profileGuardGuard: CanActivateFn = (route, state) => {
-//   return true;
-// };
+@Injectable({
+  providedIn: 'root'
+})
+export class ProfileGuardGuard implements CanActivate {
 
-import { CanActivateFn, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+  constructor(private router: Router) { }
 
-export const ProfileGuardGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  const router = route.routeConfig?.path === 'profile' ? new Router() : undefined;
-  // let user = sessionStorage.getItem('user');
-  // if (user) {
-  //   user = JSON.parse(user);
-  //   if (user.role === 'donor') {
-  //     router?.navigate(['donor-profile']);
-  //   } else if (user.role === 'fundraiser') {
-  //     router?.navigate(['fundraiser-profile']);
-  //   }
-  //   return false;
-  // }
-  // return true;
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
+    let user = sessionStorage.getItem('user');
+    console.log('User from session** storage:', user);
 
-  // let user = sessionStorage.getItem('user');
-  // console.log('User from session storage:', user);
-  // if (user) {
-  //   user = JSON.parse(user);
-  //   console.log('Parsed user:', user);
-  //   if (user.role === 'donor') {
-  //     this.router.navigate(['donor-profile']);
-  //   } else if (user.role === 'fundraiser') {
-  //     this.router.navigate(['fundraiser-profile']);
-  //   }
-  //   return false;
-  // }
-  // return true;
-
-
-  let user = sessionStorage.getItem('user');
-  console.log('User from session storage:', user);
-  if (user) {
-    let parsedUser = JSON.parse(user);
-    console.log('Parsed user:', parsedUser);
-    if (parsedUser && parsedUser.role) {
-      if (parsedUser.role === 'donor') {
-        router?.navigate(['donor-profile']);
-      } else if (parsedUser.role === 'fundraiser') {
-        router?.navigate(['fundraiser-profile']);
+    if (user) {
+      let parsedUser = JSON.parse(user);
+      console.log('Parsed user:', parsedUser);
+      if (parsedUser && parsedUser.role) {
+        if (parsedUser.role === 'donor') {
+          return this.router.parseUrl('/donor-profile');
+        } else if (parsedUser.role === 'fundraiser') {
+          return this.router.parseUrl('/fundraiser-profile');
+        }
       }
-      return false;
+    } else {
+      return this.router.parseUrl('/empty');
     }
-  } else {
-    router?.navigate(['empty']);
-
+    return true;
   }
-  return true;
-};
+}
