@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Router } from '@angular/router';
+import { NavbarService } from '../../services/navbar.service';
 
 
 @Component({
@@ -13,7 +14,10 @@ export class HomeComponent {
 
   private slideIndex = 0;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,public navbarService: NavbarService)
+   { 
+    this.navbarService.showNavBar();
+   }
 
 
   ngOnInit(): void {
