@@ -1,0 +1,27 @@
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .post-box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+ 
+  
+  .filter-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .filter-button:hover {
+    background-color: #45a049;
+  }
+ 
