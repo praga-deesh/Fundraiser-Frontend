@@ -1,5 +1,11 @@
 <p>donor-profile works!</p>
-
+ <!-- <div *ngIf="message" class="alert alert-success">
+    <p>{{message}}</p>
+  </div>
+  
+  <div *ngIf="errorMessage" class="alert alert-danger"> 
+    <p>{{errorMessage}}</p>
+  </div> -->
 
   <p>Name: {{ user.name }}</p>
   <p>Email: {{ user.email }}</p>
@@ -14,6 +20,7 @@
 </div>
 
 <br>
+
 
 <div *ngIf="isUpdateTabVisibile">
   <!-- <div *ngIf="message" class="alert alert-success">
