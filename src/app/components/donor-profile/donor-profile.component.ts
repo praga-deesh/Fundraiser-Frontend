@@ -16,9 +16,7 @@ import { LoginbuttonService } from '../../services/loginbutton.service';
 })
 
 export class DonorProfileComponent implements OnInit {
-  // console.log("hi");
   user: any;
-  // bankDets:Payment=new Payment();
   accountId:string="";
   balance:number=0;
   message: string = "";
@@ -34,8 +32,6 @@ export class DonorProfileComponent implements OnInit {
     if (userData) {
       this.user = JSON.parse(userData);
       console.log(this.user.id + "**");
-      // this.name=this.user.name;
-      // this.email=this.user.email;
     }
   }
   
@@ -73,10 +69,8 @@ export class DonorProfileComponent implements OnInit {
         },
         error: (err) => {
           console.log(err);
-          // this.errorMessage="Couldn't add account";
           this.errorMessage = "Updation failed";
           this.isUpdateTabVisibile=false;
-          // this.errorMessage=err.errorMessage;
           this.message = "";
         }
       }
@@ -93,10 +87,8 @@ export class DonorProfileComponent implements OnInit {
         },
         error: (err) => {
           console.log(err);
-          // this.errorMessage="Couldn't add account";
           this.errorMessage = "Updation failed";
           this.isUpdateTabVisibile=false;
-          // this.errorMessage=err.errorMessage;
           this.message = "";
         }
       }
