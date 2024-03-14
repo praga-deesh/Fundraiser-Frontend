@@ -19,6 +19,7 @@ export class DonorLoginComponent {
   constructor(private donorService:DonorService,private router:Router,public navbarService: NavbarService)
   {
     this.navbarService.hideNavBar();
+    
   }
   email:string="";
   password:string="";
@@ -26,7 +27,6 @@ export class DonorLoginComponent {
   
   loginDonor()
   {
-    
     this.donorService.loginDonor(this.email,this.password).subscribe(
       {
         next:(data)=>{

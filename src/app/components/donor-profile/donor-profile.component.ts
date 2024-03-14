@@ -3,6 +3,10 @@ import { Donor } from '../../model/donor';
 import { DonorService } from '../../services/donor.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Payment } from '../../model/payment';
+import { Router } from '@angular/router';
+import { NavbarService } from '../../services/navbar.service';
+import { LoginbuttonService } from '../../services/loginbutton.service';
 @Component({
   selector: 'app-donor-profile',
   standalone: true,
@@ -10,18 +14,19 @@ import { CommonModule } from '@angular/common';
   templateUrl: './donor-profile.component.html',
   styleUrl: './donor-profile.component.css'
 })
-// export class DonorProfileComponent {
 
-// }
 export class DonorProfileComponent implements OnInit {
   // console.log("hi");
   user: any;
-  
+  // bankDets:Payment=new Payment();
+  accountId:string="";
+  balance:number=0;
   message: string = "";
   errorMessage: string = "";
+  password:string="";
   newName: string = "";
   newPassword: string = "";
-  constructor(private donorService: DonorService) { }
+  constructor(private donorService: DonorService,private router:Router,private navbarService:NavbarService,public loginButtonService:LoginbuttonService) { }
 
   ngOnInit() {
     // Get user details from sessionStorage
@@ -29,8 +34,13 @@ export class DonorProfileComponent implements OnInit {
     if (userData) {
       this.user = JSON.parse(userData);
       console.log(this.user.id + "**");
+      // this.name=this.user.name;
+      // this.email=this.user.email;
     }
   }
+  
+  
+
   getDonorDetails() {
     this.donorService.getDonorDetails(this.user.id).subscribe(
 
@@ -50,48 +60,110 @@ export class DonorProfileComponent implements OnInit {
       }
     )
   }
+
   updateDonorName() {
     this.donorService.updateDonorName(this.user.id, this.newName).subscribe(
       {
         next: (data) => {
           console.log(data);
-
           this.message = "Name updated successfully!!!";
+          this.getDonorDetails();
+          this.isUpdateTabVisibile=false;
           this.errorMessage = "";
         },
         error: (err) => {
           console.log(err);
           // this.errorMessage="Couldn't add account";
           this.errorMessage = "Updation failed";
+          this.isUpdateTabVisibile=false;
           // this.errorMessage=err.errorMessage;
           this.message = "";
         }
       }
     )
-
-
   }
   updateDonorPassword(){
     this.donorService.updateDonorPassword(this.user.id, this.newPassword).subscribe(
       {
         next: (data) => {
           console.log(data);
-
           this.message = "Password updated successfully!!!";
+          this.isUpdateTabVisibile=false;
           this.errorMessage = "";
         },
         error: (err) => {
           console.log(err);
           // this.errorMessage="Couldn't add account";
           this.errorMessage = "Updation failed";
+          this.isUpdateTabVisibile=false;
           // this.errorMessage=err.errorMessage;
           this.message = "";
         }
       }
     )
   }
+  isUpdateTabVisibile:boolean=false;
 
+  updateDonorDetails()
+  {
+    this.isUpdateTabVisibile=true;
+    console.log("hol");
+  }
+  isAddBankDetailsVisible:boolean=false;
+
+  addBankDetails()
+  {
+    this.isAddBankDetailsVisible=true;
+  }
+
+  updateBankDetails()
+  {
+    this.donorService.updateBankDetails(this.user.id,this.accountId,this.balance).subscribe(
+      {
+        next: (data) => {
+          console.log(data);
+          this.message = "Account details updated successfully!!!";
+          this.isAddBankDetailsVisible=false;
+          this.errorMessage = "";
+        },
+        error: (err) => {
+          console.log(err);
+          this.errorMessage = "Updation failed";
+          this.isAddBankDetailsVisible=false;
+          this.message = "";
+        }
+      }
+      
+    )
+  }
+
+  logout()
+  {
+    sessionStorage.clear();
+    this.router.navigateByUrl('home');
+    this.loginButtonService.showLoginButton();
+  }
+
+  
+
+  deleteDonorAccount()
+  {
+    sessionStorage.clear();
+    this.router.navigateByUrl('home');
+    this.loginButtonService.showLoginButton();
+    this.donorService.deleteDonorAccount(this.user.id).subscribe(
+      {
+        next: (data:any) => {
+          console.log(data);
+          this.message = "Account deleted successfully!!!";
+          this.errorMessage = "";
+        },
+        error: (err:any) => {
+          console.log(err);
+          this.errorMessage = "Failed";
+          this.message = "";
+        }
+      }
+    )
+  }
 }
-
-
-
