@@ -16,4 +16,9 @@ export class FundraiserService {
   {
     return this.httpClient.post('http://localhost:8090/fundraiser',newFundraiser);
   }
+
+  getFundraiserDetails(userId: number): Observable<any> {
+    console.log('User id:', userId);
+    return this.httpClient.get<Fundraiser>(`http://localhost:8090/fundraiser/{id}?id=${userId}`);
+  }
 }

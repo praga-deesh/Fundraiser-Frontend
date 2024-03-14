@@ -1,0 +1,43 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post Form</title>
+    </head>
+    <body>
+        <h2>Create Post Form</h2>
+        <form id="postForm" #postAddForm="ngForm">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" [(ngModel)]="newPost.title"  #titleRef="ngModel" required><br><br>
+    
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" [(ngModel)]="newPost.description"  #descriptionRef="ngModel" required></textarea><br><br>
+    
+            <label for="category">Category:</label>
+            <select id="category" name="category" [(ngModel)]="newPost.category"  #categoryRef="ngModel">
+                <option value="food">Food</option>
+                <option value="education">Education</option>
+                <option value="medical">Medical</option>
+            </select><br><br>
+    
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate" name="startDate"  [(ngModel)]="newPost.startDate"  #startDateRef="ngModel" required><br><br>
+    
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate" name="endDate"  [(ngModel)]="newPost.endDate"  #endDateRef="ngModel"required><br><br>
+    
+            <label for="targetAmount">Target Amount:</label>
+            <input type="number" id="targetAmount" name="targetAmount" [(ngModel)]="newPost.amountRequested"  #targetAmountRef="ngModel" required><br><br>
+
+                
+            <label for="collectedAmount">Collected Amount:</label>
+            <input type="number" id="collectedAmount" name="collectedAmount" [(ngModel)]="newPost.amountCollected"  #collectedAmountRef="ngModel"required><br><br>
+    
+            <label for="status">Status :</label>
+            <input type="text" id="status" name="status" value="incomplete" [(ngModel)]="newPost.status"  #statusRef="ngModel"> <br><br>
+    
+            <label for="donationId">Donation ID:</label>
+            <input type="text" id="donationId" name="donationId" [(ngModel)]="newPost.donationAccountId"  #donationIdRef="ngModel"><br><br>
+    
+            <button (click)="addNewPost()">Create</button>
+        </form>
+    </body>
