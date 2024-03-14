@@ -1,0 +1,33 @@
+<p>donor-profile works!</p>
+<p>Name: {{ user.name }}</p>
+<p>Email: {{ user.email }}</p>
+<!-- Add more fields as necessary -->
+<p>hiiiii</p>
+
+<label for="donorName">Name:</label>
+<input type="text" id="donorName" name="donorName" [(ngModel)]="newName" #nameRef="ngModel" pattern="[A-Za-z]{3,}"
+  required>
+<div *ngIf="nameRef.invalid && nameRef.touched || nameRef.dirty">
+  <p *ngIf="nameRef.errors?.['required']" class="text-danger">Name is required...can't be blank</p>
+  <p *ngIf="nameRef.errors?.['pattern']" class="text-danger">Only characters are allowed,minimum 3 characters are
+    required</p>
+</div>
+<br>
+
+<label for="donorPassword">Password:</label>
+<input type="password" id="donorPassword" name="donorPassword" [(ngModel)]="newPassword" #passwordRef="ngModel"
+  minlength="6" required>
+<div *ngIf="passwordRef.invalid && passwordRef.touched || passwordRef.dirty">
+  <p *ngIf="passwordRef.errors?.['required']" class="text-danger">Password is required.</p>
+  <p *ngIf="passwordRef.errors?.['minlength']" class="text-danger">Password must contain at least 6 characters.</p>
+</div>
+<br>
+<div id="donor-details">
+  <button (click)="getDonorDetails()">Donor Details</button>
+</div>
+<div id="donor-name-update">
+  <button (click)="updateDonorName()">Update Donor name</button>
+</div>
+<div id="donor-password-update">
+  <button (click)="updateDonorPassword()">Update Donor Password</button>
+</div>
