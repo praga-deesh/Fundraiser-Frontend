@@ -16,6 +16,22 @@ export class DonorService {
   {
     return this.httpClient.post('http://localhost:8090/donor',newDonor);
   }
+   
+  getDonorDetails(userId: number): Observable<any> {
+    console.log('User id:', userId);
+    return this.httpClient.get<Donor>(`http://localhost:8090/donor/{id}?id=${userId}`);
+  }
+  updateDonorName(id: number, newName: string): Observable<any> {
+    console.log('Name:', newName);
+    const url = `http://localhost:8090/donor/name?id=${id}&newName=${newName}`;
+    return this.httpClient.patch(url, {});
+  }
+  updateDonorPassword(id: number, newPassword: string): Observable<any> {
+    const url = `http://localhost:8090/donor/password?id=${id}`;
+    const body = { password: newPassword };
+    return this.httpClient.patch(url, body);
+  }
+  
 }
 
 
