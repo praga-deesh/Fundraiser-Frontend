@@ -1,1 +1,33 @@
-<p>posts works!</p>
+<div>
+    <h3>Available Posts:</h3>
+    <h6 *ngIf="posts.length < 1">
+        No Products found!
+    </h6>
+    
+    <div class="button-container">
+        <button class="filter-button" (click)="getPosts()">All Posts</button>
+        <button class="filter-button" (click)="getCompletePosts()">Completed Posts</button>
+        <button class="filter-button" (click)="getIncompletedPosts()">Incomplete Posts</button>
+        <button class="filter-button" (click)="getPostsSortedByDate()">Sort by Date</button>
+    </div>
+    
+   
+
+
+
+    
+  
+    <div class="post-grid" *ngIf="posts.length > 0">
+        <div class="post-box" *ngFor="let post of posts">
+            <h4>ID: {{ post.id }}</h4>
+            <p><strong>Title:</strong> {{ post.title }}</p>
+            <p><strong>Category:</strong> {{ post.category }}</p>
+            <p><strong>Start Date:</strong> {{ post.startDate }}</p>
+            <p><strong>End Date:</strong> {{ post.endDate }}</p>
+            <p><strong>Amount Requested:</strong> {{ post.amountRequested }}</p>
+            <p><strong>Amount Collected:</strong> {{ post.amountCollected }}</p>
+            <p><strong>Status:</strong> {{ post.status }}</p>
+            <button>More Details</button>
+        </div>
+    </div>
+</div>

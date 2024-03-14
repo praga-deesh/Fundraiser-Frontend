@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { CanActivateFn } from '@angular/router';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTree } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileGuardGuard implements CanActivate {
+export class postsGuard implements CanActivate {
 
   constructor(private router: Router) { }
 
@@ -16,10 +17,8 @@ export class ProfileGuardGuard implements CanActivate {
       let parsedUser = JSON.parse(user);
       console.log('Parsed user:', parsedUser);
       if (parsedUser && parsedUser.role) {
-        if (parsedUser.role === 'donor') {
-          return this.router.parseUrl('/donor-profile');
-        } else if (parsedUser.role === 'fundraiser') {
-          return this.router.parseUrl('/fundraiser-profile');
+        if (parsedUser.role === 'fundraiser') {
+          return this.router.parseUrl('/my-posts');
         }
       }
     } else {
