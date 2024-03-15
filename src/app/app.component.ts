@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { RouterLinkActive } from '@angular/router';
 import { NavbarService } from './services/navbar.service';
+import { LoginbuttonService } from './services/loginbutton.service';
 
 @Component({
   selector: 'app-root',
@@ -15,12 +16,10 @@ import { NavbarService } from './services/navbar.service';
 })
 export class AppComponent {
   title = 'fundraise-app';
-  isVisible: boolean = true;
-
-  hideButton() {
-    this.isVisible = false;
+  
+  constructor(public navbarService:NavbarService,public loginbuttonService:LoginbuttonService)
+  {
+    
   }
-  constructor(public navbarService:NavbarService)
-  {}
-
+    
   }

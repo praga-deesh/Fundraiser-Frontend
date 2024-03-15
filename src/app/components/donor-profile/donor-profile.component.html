@@ -1,33 +1,87 @@
 <p>donor-profile works!</p>
-<p>Name: {{ user.name }}</p>
-<p>Email: {{ user.email }}</p>
-<!-- Add more fields as necessary -->
-<p>hiiiii</p>
+ 
 
-<label for="donorName">Name:</label>
-<input type="text" id="donorName" name="donorName" [(ngModel)]="newName" #nameRef="ngModel" pattern="[A-Za-z]{3,}"
-  required>
-<div *ngIf="nameRef.invalid && nameRef.touched || nameRef.dirty">
-  <p *ngIf="nameRef.errors?.['required']" class="text-danger">Name is required...can't be blank</p>
-  <p *ngIf="nameRef.errors?.['pattern']" class="text-danger">Only characters are allowed,minimum 3 characters are
-    required</p>
+  <p>Name: {{ user.name }}</p>
+  <p>Email: {{ user.email }}</p>
+
+<div>
+  <button (click)="updateDonorDetails()">Update</button>
+  <button (click)="addBankDetails()">Add Bank Details</button>
+  <button (click)="logout()">Logout</button>
+  <button (click)="deleteDonorAccount()">Delete Account</button>
+  
+  
 </div>
+
 <br>
 
-<label for="donorPassword">Password:</label>
-<input type="password" id="donorPassword" name="donorPassword" [(ngModel)]="newPassword" #passwordRef="ngModel"
-  minlength="6" required>
-<div *ngIf="passwordRef.invalid && passwordRef.touched || passwordRef.dirty">
-  <p *ngIf="passwordRef.errors?.['required']" class="text-danger">Password is required.</p>
-  <p *ngIf="passwordRef.errors?.['minlength']" class="text-danger">Password must contain at least 6 characters.</p>
-</div>
+
+<div *ngIf="isUpdateTabVisibile">
+  <!-- <div *ngIf="message" class="alert alert-success">
+    <p>{{message}}</p>
+  </div>
+  
+  <div *ngIf="errorMessage" class="alert alert-danger"> 
+    <p>{{errorMessage}}</p>
+  </div> -->
+
+
+  <table>
+    <tr>
+      <label for="donorName">Name:</label>
+      <input type="text" id="donorName" name="donorName" [(ngModel)]="newName" #nameRef="ngModel" pattern="[A-Za-z]{3,}"
+        required>
+      <div *ngIf="nameRef.invalid && nameRef.touched || nameRef.dirty">
+        <p *ngIf="nameRef.errors?.['required']" class="text-danger">Name is required...can't be blank</p>
+        <p *ngIf="nameRef.errors?.['pattern']" class="text-danger">Only characters are allowed,minimum 3 characters are
+          required</p>
+      </div>
+      <td><div id="donor-name-update">
+        <button (click)="updateDonorName()">Update Donor name</button>
+      </div></td>
+    </tr>
 <br>
-<div id="donor-details">
-  <button (click)="getDonorDetails()">Donor Details</button>
+    <tr>
+      <label for="donorPassword">Password:</label>
+      <input type="password" id="donorPassword" name="donorPassword" [(ngModel)]="newPassword" #passwordRef="ngModel"
+        minlength="6" required>
+      <div *ngIf="passwordRef.invalid && passwordRef.touched || passwordRef.dirty">
+        <p *ngIf="passwordRef.errors?.['required']" class="text-danger">Password is required.</p>
+        <p *ngIf="passwordRef.errors?.['minlength']" class="text-danger">Password must contain at least 6 characters.</p>
+      </div>
+      <td>
+        <div id="donor-password-update">
+          <button (click)="updateDonorPassword()">Update Donor Password</button>
+        </div>
+      </td>
+    </tr>
+  </table>
 </div>
-<div id="donor-name-update">
-  <button (click)="updateDonorName()">Update Donor name</button>
+
+<div *ngIf="isAddBankDetailsVisible">
+
+  <!-- <div *ngIf="message" class="alert alert-success">
+    <p>{{message}}</p>
+  </div>
+  
+  <div *ngIf="errorMessage" class="alert alert-danger"> 
+    <p>{{errorMessage}}</p>
+  </div> -->
+
+  <label for="accountId">Account Id: </label>
+  <input type="text" name="accountId" id="accountId" [(ngModel)]="accountId" #accountIdRef="ngModel" required> 
+  <div *ngIf="accountIdRef.invalid && accountIdRef.touched || accountIdRef.dirty">
+    <p *ngIf="accountIdRef.errors?.['required']" class="text-danger">AccountId is required...can't be blank</p>
+  </div>
+  <br>
+
+  <label for="balance">Balance: </label>
+  <input type="number" name="balance" id="balance" [(ngModel)]="balance" #balanceRef="ngModel" required> 
+  <div *ngIf="balanceRef.invalid && balanceRef.touched || balanceRef.dirty">
+    <p *ngIf="balanceRef.errors?.['required']" class="text-danger">Amount should not be negative</p>
+  </div>
+  <br>
+  <button (click)="updateBankDetails()">Update Bank Details </button>
 </div>
-<div id="donor-password-update">
-  <button (click)="updateDonorPassword()">Update Donor Password</button>
-</div>
+
+

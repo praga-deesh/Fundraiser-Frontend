@@ -31,6 +31,19 @@ export class DonorService {
     const body = { password: newPassword };
     return this.httpClient.patch(url, body);
   }
+
+  updateBankDetails(id: number, accountId: string, balance:number):Observable<any>
+  {
+    console.log(accountId+" "+balance+" "+id);
+    const url = `http://localhost:8090/donor/bankDetails/${id}?accountId=${accountId}&balance=${balance}`;
+    const body ={id: id,accountId: accountId,balance: balance};
+    return this.httpClient.post(url,body);
+  }
+
+  deleteDonorAccount(id:number):Observable<any>
+  {
+    return this.httpClient.delete(`http://localhost:8090/donor?id=${id}`);
+  }
   
 }
 
