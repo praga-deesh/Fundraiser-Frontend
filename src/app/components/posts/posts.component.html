@@ -1,3 +1,4 @@
+
 <div>
     <h3>Available Posts:</h3>
     <h6 *ngIf="posts.length < 1">
@@ -11,12 +12,16 @@
         <button class="filter-button" (click)="getPostsSortedByDate()">Sort by Date</button>
     </div>
     
-   
-
-
-
+    <div class="category-dropdown">
+            <select name="Categories">
+            <option value="">All Categories</option>
+            <option value="education">Education</option>
+            <option value="food">Food</option>
+            <option value="medical">Medical</option>
+        </select>
+       
+    </div>
     
-  
     <div class="post-grid" *ngIf="posts.length > 0">
         <div class="post-box" *ngFor="let post of posts">
             <h4>ID: {{ post.id }}</h4>
@@ -26,8 +31,10 @@
             <p><strong>End Date:</strong> {{ post.endDate }}</p>
             <p><strong>Amount Requested:</strong> {{ post.amountRequested }}</p>
             <p><strong>Amount Collected:</strong> {{ post.amountCollected }}</p>
+            <p><strong>Description:</strong> {{ post.description }}</p>
             <p><strong>Status:</strong> {{ post.status }}</p>
-            <button>More Details</button>
+            <p *ngIf="post.status === 'incomplete'"><button>Donate</button></p>
+           
         </div>
     </div>
 </div>

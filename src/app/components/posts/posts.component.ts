@@ -39,8 +39,12 @@ export class PostsComponent implements OnInit {
     this.postService.getPostsSortedByDate()
       .subscribe(posts => this.posts = posts);
   }
+
+
+
+
  
-  }
+}
 
 
 
