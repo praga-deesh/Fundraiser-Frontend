@@ -7,13 +7,13 @@
     
     <div class="button-container">
         <button class="filter-button" (click)="getPosts()">All Posts</button>
-        <button class="filter-button" (click)="getCompletePosts()">Completed Posts</button>
+        <button class="filter-button" (click)="getCompletedPosts()">Completed Posts</button>
         <button class="filter-button" (click)="getIncompletedPosts()">Incomplete Posts</button>
         <button class="filter-button" (click)="getPostsSortedByDate()">Sort by Date</button>
     </div>
     
     <div class="category-dropdown">
-            <select name="Categories">
+            <select name="Categories" #category (change)="onCategorySelected(category.value)">
             <option value="">All Categories</option>
             <option value="education">Education</option>
             <option value="food">Food</option>
@@ -33,7 +33,7 @@
             <p><strong>Amount Collected:</strong> {{ post.amountCollected }}</p>
             <p><strong>Description:</strong> {{ post.description }}</p>
             <p><strong>Status:</strong> {{ post.status }}</p>
-            <p *ngIf="post.status === 'incomplete'"><button>Donate</button></p>
+            <button (click)="redirectToTransaction(post)">Donate</button>
            
         </div>
     </div>

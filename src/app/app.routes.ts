@@ -13,6 +13,9 @@ import { DonorProfileComponent } from './components/donor-profile/donor-profile.
 import { FundraiserProfileComponent } from './components/fundraiser-profile/fundraiser-profile.component';
 import { MyPostsComponent } from './components/my-posts/my-posts.component';
 import { AddNewPostComponent } from './components/add-new-post/add-new-post.component';
+import { transition } from '@angular/animations';
+import { Transaction } from './model/transaction';
+import { TransactionComponent } from './components/transaction/transaction.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -29,6 +32,7 @@ export const routes: Routes = [
     { path: 'fundraiser-profile', component: FundraiserProfileComponent },
     { path:'my-posts', component:MyPostsComponent},
     { path:'add-new-post',component:AddNewPostComponent},
+    { path:'donation-transaction',component:TransactionComponent },
     
     { path: '**', component: PageNotFoundComponent }
 ];

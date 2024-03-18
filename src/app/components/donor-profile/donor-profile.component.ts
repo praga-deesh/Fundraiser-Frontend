@@ -115,6 +115,9 @@ export class DonorProfileComponent implements OnInit {
         next: (data) => {
           console.log(data);
           this.message = "Account details updated successfully!!!";
+          let user={id:data.id,name:data.name,email:data.email,accountId:data.accountId,balance:data.accountBalance};
+          sessionStorage.setItem("donor",JSON.stringify(user));
+          console.log(user)
           this.isAddBankDetailsVisible=false;
           this.errorMessage = "";
         },

@@ -13,7 +13,7 @@ export class NewPostService {
   constructor(private httpClient:HttpClient) { }
 
   addNewPost(newPost:NewPost):Observable<any> {
-    console.log("newPOstL"+newPost)
+    console.log("newPost"+newPost)
     return this.httpClient.post('http://localhost:8090/post',newPost);
    }
  

@@ -2,6 +2,8 @@ export class Donor {
     constructor(
     public name?:string,
     public email?:string,
-    public password?:string)
+    public password?:string,
+    public accountId?:string,
+    public accountBalance?:number)
     {}
 }

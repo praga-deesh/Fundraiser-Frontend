@@ -19,7 +19,7 @@ export class DonorService {
    
   getDonorDetails(userId: number): Observable<any> {
     console.log('User id:', userId);
-    return this.httpClient.get<Donor>(`http://localhost:8090/donor/{id}?id=${userId}`);
+    return this.httpClient.get<any>(`http://localhost:8090/donor/{id}?id=`+userId);
   }
   updateDonorName(id: number, newName: string): Observable<any> {
     console.log('Name:', newName);
