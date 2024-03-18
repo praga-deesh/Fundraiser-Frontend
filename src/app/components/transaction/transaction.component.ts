@@ -25,7 +25,9 @@ export class TransactionComponent {
   post: any;
   donor: Donor | undefined;
 
-  constructor(private transactionService:TransactionService,private router:Router,private postService:PostService,private donorService:DonorService) {}
+  constructor(private transactionService:TransactionService,private router:Router,private postService:PostService,private donorService:DonorService) {
+    
+  }
 
   newTransaction:Transaction= new Transaction();
   donationPost:NewPost=new NewPost();
@@ -43,13 +45,6 @@ export class TransactionComponent {
       console.log(this.post.id + "**");
     }
     }
-  }
-
-
-  donationTransaction() {
-    console.log('user : '+this.user.id);
-    console.log('post:'+this.post.id);
-    
     const userId = this.user.id; // Assuming `this.user.id` is defined and holds the current user's ID
     this.donorService.getDonorDetails(this.user.id).subscribe(
 
@@ -88,6 +83,15 @@ export class TransactionComponent {
       }
     )
 
+  }
+
+
+  donationTransaction() {
+    console.log('user : '+this.user.id);
+    console.log('post:'+this.post.id);
+
+    
+    
     
     console.log("transactionDto : ",this.newTransaction)
     this.transactionService.paymentTransaction(this.newTransaction).subscribe(
@@ -100,6 +104,7 @@ export class TransactionComponent {
         },
         error:(err)=>{
           console.log(err);
+          console.log("Error");
           // this.errorMessage="Couldn't add account";
           this.errorMessage="Payment Failed!!!";
           this.message="";
