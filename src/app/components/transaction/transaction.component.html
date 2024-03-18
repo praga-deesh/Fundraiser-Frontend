@@ -1,0 +1,12 @@
+<p>transaction works!</p>
+
+
+<label for="transactionAmount">Donation Amount : </label>
+<input type="number" id="donateAmount" name="donateAmount" [(ngModel)]="newTransaction.amount"  #amountRef="ngModel" required>
+<div *ngIf="amountRef.invalid && amountRef.touched || amountRef.dirty">
+    <p *ngIf="amountRef.errors?.['required']" class="text-danger">Amount is required...can't be blank</p>
+
+<button (click)="donationTransaction()"> Donate </button>
+</div>
+<br>
+
