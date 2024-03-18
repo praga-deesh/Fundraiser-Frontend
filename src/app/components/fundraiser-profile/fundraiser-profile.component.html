@@ -1,1 +1,49 @@
 <p>fundraiser-profile works!</p>
+
+<p>Name: {{ user.name }}</p>
+<p>Email: {{ user.email }}</p>
+
+<div>
+<button (click)="updateFundraiserDetails()">Update</button>
+
+<button (click)="logout()">Logout</button>
+<button (click)="deleteFundraiserAccount()">Delete Account</button>
+
+</div>
+
+<br>
+
+
+<div *ngIf="isUpdateTabVisibile">
+
+  <table>
+    <tr>
+      <label for="fundraiserName">Name:</label>
+      <input type="text" id="fundraiserName" name="fundraiserName" [(ngModel)]="newName" #nameRef="ngModel" pattern="[A-Za-z]{3,}"
+        required>
+      <div *ngIf="nameRef.invalid && nameRef.touched || nameRef.dirty">
+        <p *ngIf="nameRef.errors?.['required']" class="text-danger">Name is required...can't be blank</p>
+        <p *ngIf="nameRef.errors?.['pattern']" class="text-danger">Only characters are allowed,minimum 3 characters are
+          required</p>
+      </div>
+      <td><div id="fundraiser-name-update">
+        <button (click)="updateFundraiserName()">Update Fundraiser name</button>
+      </div></td>
+    </tr>
+<br>
+    <tr>
+      <label for="fundraiserPassword">Password:</label>
+      <input type="password" id="fundraiserPassword" name="fundraiserPassword" [(ngModel)]="newPassword" #passwordRef="ngModel"
+        minlength="6" required>
+      <div *ngIf="passwordRef.invalid && passwordRef.touched || passwordRef.dirty">
+        <p *ngIf="passwordRef.errors?.['required']" class="text-danger">Password is required.</p>
+        <p *ngIf="passwordRef.errors?.['minlength']" class="text-danger">Password must contain at least 6 characters.</p>
+      </div>
+      <td>
+        <div id="fundraiser-password-update">
+          <button (click)="updateFundraiserPassword()">Update Fundraiser Password</button>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
