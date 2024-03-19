@@ -4,6 +4,6 @@ export class DonorProfile {
         public email?:string,
         public password?:string,
         public accountNo?:number,
-        
+        public status?:string
     ){}
 }
