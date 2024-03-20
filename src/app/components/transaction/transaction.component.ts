@@ -106,7 +106,7 @@ export class TransactionComponent {
           console.log(err);
           console.log("Error");
           // this.errorMessage="Couldn't add account";
-          this.errorMessage="Payment Failed!!!";
+          this.errorMessage=err.error;
           this.message="";
         }
       }
