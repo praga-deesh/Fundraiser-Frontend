@@ -3,7 +3,7 @@ import { CanActivateFn, Router } from '@angular/router';
 import { Donor } from '../model/donor';
 import { DonorService } from '../services/donor.service';
 
-export const donationGuard: CanActivateFn = (route, state) => {
+export const donationGuard: CanActivateFn = (route, state) => { 
 
 
   let user = sessionStorage.getItem("user");
@@ -17,6 +17,7 @@ export const donationGuard: CanActivateFn = (route, state) => {
     if(userObj.accountId == null) {
       console.log("donation guard on donor no bank details(accountId is null)");
       inject(Router).navigateByUrl('donor-profile');
+      //gg
     }
 
   }
