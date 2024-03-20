@@ -1,31 +1,23 @@
-import { Injectable } from '@angular/core';
-import { CanActivateFn } from '@angular/router';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTree } from '@angular/router';
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class profileGuard implements CanActivate {
+export const profileGuard: CanActivateFn = (route, state) => {
 
-  constructor(private router: Router) { }
-
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
-    let user = sessionStorage.getItem('user');
-    console.log('User from session** storage:', user);
-
-    if (user) {
-      let parsedUser = JSON.parse(user);
-      console.log('Parsed user:', parsedUser);
-      if (parsedUser && parsedUser.role) {
-        if (parsedUser.role === 'donor') {
-          return this.router.parseUrl('/donor-profile');
-        } else if (parsedUser.role === 'fundraiser') {
-          return this.router.parseUrl('/fundraiser-profile');
-        }
-      }
-    } else {
-      return this.router.parseUrl('/empty');
+  let user = sessionStorage.getItem("user");
+  let userObj;
+  console.log(user);
+  if(user) {
+    userObj = JSON.parse(user);
+    console.log(userObj);
+    if(userObj.role == "donor") {
+      console.log("profile guard on donor");
+      inject(Router).navigateByUrl('donor-profile');
     }
-    return true;
+    else if(userObj.role == "fundraiser") {
+      console.log("profile guard on fundraiser");
+      inject(Router).navigateByUrl('fundraiser-profile');
+    }
   }
-}
+
+  return true;
+};

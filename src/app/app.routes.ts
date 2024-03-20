@@ -8,14 +8,15 @@ import { DonorSignUpComponent } from './components/donor-sign-up/donor-sign-up.c
 import { FundraiserLoginComponent } from './components/fundraiser-login/fundraiser-login.component';
 import { FundraiserSignUpComponent } from './components/fundraiser-sign-up/fundraiser-sign-up.component';
 import { profileGuard } from './guards/profile.guard';
-import { postsGuard } from './guards/posts.guard';
+
 import { DonorProfileComponent } from './components/donor-profile/donor-profile.component';
 import { FundraiserProfileComponent } from './components/fundraiser-profile/fundraiser-profile.component';
 import { MyPostsComponent } from './components/my-posts/my-posts.component';
 import { AddNewPostComponent } from './components/add-new-post/add-new-post.component';
-import { transition } from '@angular/animations';
-import { Transaction } from './model/transaction';
+
 import { TransactionComponent } from './components/transaction/transaction.component';
+import { postGuard } from './guards/post.guard';
+import { donationGuard } from './guards/donation.guard';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -27,12 +28,12 @@ export const routes: Routes = [
     {path:'fundraiser-sign-up',component:FundraiserSignUpComponent},
 
     { path: 'profile', component: ProfileComponent, canActivate: [profileGuard] },
-    { path: 'posts', component: PostsComponent, canActivate: [postsGuard]},
+    { path: 'posts', component: PostsComponent,canActivate: [postGuard]},
     { path: 'donor-profile', component: DonorProfileComponent },
     { path: 'fundraiser-profile', component: FundraiserProfileComponent },
     { path:'my-posts', component:MyPostsComponent},
     { path:'add-new-post',component:AddNewPostComponent},
-    { path:'donation-transaction',component:TransactionComponent },
+    { path:'donation-transaction',component:TransactionComponent, canActivate: [donationGuard] },
     
     { path: '**', component: PageNotFoundComponent }
 ];

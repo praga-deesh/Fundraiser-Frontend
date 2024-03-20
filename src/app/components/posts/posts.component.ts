@@ -65,6 +65,7 @@ export class PostsComponent implements OnInit {
            post ={id:post.id,title:post.title,category:post.category,amountCollected:post.amountCollected,amountRequested:post.amountRequested,status:post.status}
            sessionStorage.setItem("post",JSON.stringify(post));
            this.router.navigateByUrl('donation-transaction');
+
   }
 
 

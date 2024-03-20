@@ -31,7 +31,7 @@ export class DonorLoginComponent {
       {
         next:(data)=>{
           console.log(data);
-          let user={id:data.id,name:data.name,email:data.email,role:"donor"};
+          let user={id:data.id,name:data.name,email:data.email,role:"donor",accountId:data.accountId,balance:data.accountId};
           sessionStorage.setItem("user",JSON.stringify(user));
           this.message="Logged in successfully!!!";
           this.router.navigateByUrl('home');

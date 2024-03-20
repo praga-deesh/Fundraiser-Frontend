@@ -7,6 +7,8 @@
     <p *ngIf="amountRef.errors?.['required']" class="text-danger">Amount is required...can't be blank</p>
 
 <button (click)="donationTransaction()"> Donate </button>
+
+<p *ngIf="errorMessage">{{errorMessage}}</p>
 </div>
 <br>
 
