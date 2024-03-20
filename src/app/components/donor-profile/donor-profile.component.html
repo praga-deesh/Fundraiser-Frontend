@@ -96,8 +96,11 @@
     </div>
   </div>
   <button (click)="hideDonations()">Close</button>
+  <div *ngIf="donations.length==0">
+    <p>No transactions made.</p>
+    <button (click)="hideDonations()">Close</button>
+  </div>
 </div>
-
 
 <!-- <div *ngIf="isViewDonationsVisible">
   <div class="post-grid" *ngIf=" donations.length>0">

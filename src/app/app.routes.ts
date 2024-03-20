@@ -34,6 +34,6 @@ export const routes: Routes = [
     { path:'my-posts', component:MyPostsComponent},
     { path:'add-new-post',component:AddNewPostComponent},
     { path:'donation-transaction',component:TransactionComponent, canActivate: [donationGuard] },
-    
+    {path:'',component:HomeComponent},
     { path: '**', component: PageNotFoundComponent }
 ];
