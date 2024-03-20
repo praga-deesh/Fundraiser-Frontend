@@ -47,4 +47,5 @@ export class PostService {
     return this.http.delete(`http://localhost:8090/post/${postId}?id=${postId}`);
     
   }
+  
 }

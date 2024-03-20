@@ -3,3 +3,26 @@
 
 <button (click)="createNewPost()">Create Posts</button>
 
+
+<button class="filter-button" (click)="getPostsByFundRaiserId()" (click)="showPostTab()">Get post By Id</button>
+<div *ngIf="isDeletePostDetailsVisible">
+
+<div class="post-grid" *ngIf="posts.length > 0 && isPostVisible">
+  
+  <div class="post-box" *ngFor="let post of posts" >
+      <h4>ID: {{ post.id }}</h4>
+      <p><strong>Title:</strong> {{ post.title }}</p>
+      <p><strong>Category:</strong> {{ post.category }}</p>
+      <p><strong>Start Date:</strong> {{ post.startDate }}</p>
+      <p><strong>End Date:</strong> {{ post.endDate }}</p>
+      <p><strong>Amount Requested:</strong> {{ post.amountRequested }}</p>
+      <p><strong>Amount Collected:</strong> {{ post.amountCollected }}</p>
+      <p><strong>Description:</strong> {{ post.description }}</p>
+      <p><strong>Status:</strong> {{ post.status }}</p>
+      <!-- <p *ngIf="post.status === 'incomplete'"><button>Donate</button></p> -->
+      <button class="filter-button" (click)="post.id !== undefined && deletePostById(post.id)" (click)="hidePostTab()">Delete</button>
+     
+  </div>
+</div>
+
+
