@@ -4,41 +4,86 @@
     <title>Create Post Form</title>
     </head>
     <body>
-        <h2>Create Post Form</h2>
-        <form id="postForm" #postAddForm="ngForm">
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" [(ngModel)]="newPost.title"  #titleRef="ngModel" required><br><br>
+        
+        <div class="formContainer">
+
+            <h2 class="form-title" style="text-align: center;word-spacing: 10px;">Create Post </h2> <br>
+
+        <form id="postForm" #postAddForm="ngForm" class="form-label">
+
+            
+
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" id="title" name="title" class="form-control" [(ngModel)]="newPost.title"  #titleRef="ngModel" pattern="[A-Za-z]{3,}" required>
+            <div *ngIf="titleRef.invalid && titleRef.touched || titleRef.dirty">
+                <p *ngIf="titleRef.errors?.['required']" class="text-danger">Title is required...can't be blank</p>
+                <p *ngIf="titleRef.errors?.['pattern']" class="text-danger">Only characters are allowed,minimum 3 characters are required</p>
+            </div><br><br>
     
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" [(ngModel)]="newPost.description"  #descriptionRef="ngModel" required></textarea><br><br>
+            <label for="description" class="form-label">Description:</label>
+            <textarea id="description" class="form-control" name="description" [(ngModel)]="newPost.description"  #descriptionRef="ngModel" pattern="[A-Za-z]{10,}" required></textarea>
+            <div *ngIf="descriptionRef.invalid && descriptionRef.touched || descriptionRef.dirty">
+                <p *ngIf="descriptionRef.errors?.['required']" class="text-danger">Description is required...can't be blank</p>
+                <p *ngIf="descriptionRef.errors?.['pattern']" class="text-danger">Only characters are allowed,minimum 15 characters are required</p>
+            </div><br><br>
     
-            <label for="category">Category:</label>
-            <select id="category" name="category" [(ngModel)]="newPost.category"  #categoryRef="ngModel">
+            <label for="category" class="form-label">Category:</label>
+            <select id="category" name="category" [(ngModel)]="newPost.category"  #categoryRef="ngModel" class="form-select" required>
                 <option value="food">Food</option>
                 <option value="education">Education</option>
                 <option value="medical">Medical</option>
-            </select><br><br>
+            </select>
+            <div *ngIf="categoryRef.invalid && categoryRef.touched || categoryRef.dirty">
+                <p *ngIf="categoryRef.errors?.['required']" class="text-danger">Category is required...Select One</p>
+                 </div><br><br>
     
-            <label for="startDate">Start Date:</label>
-            <input type="date" id="startDate" name="startDate"  [(ngModel)]="newPost.startDate"  #startDateRef="ngModel" required><br><br>
+            <label for="startDate" class="form-label">Start Date:</label>
+            <input type="date" id="startDate" name="startDate"  [(ngModel)]="newPost.startDate"  #startDateRef="ngModel" required class="form-control">
+            <div *ngIf="startDateRef.invalid && startDateRef.touched || startDateRef.dirty">
+                <p *ngIf="startDateRef.errors?.['required']" class="text-danger">Start Date is required...Select One</p>
+                 </div><br><br>
     
-            <label for="endDate">End Date:</label>
-            <input type="date" id="endDate" name="endDate"  [(ngModel)]="newPost.endDate"  #endDateRef="ngModel"required><br><br>
+            <label for="endDate" class="form-label">End Date:</label>
+            <input type="date" id="endDate" name="endDate"  [(ngModel)]="newPost.endDate"  #endDateRef="ngModel"required class="form-control">
+            <div *ngIf="endDateRef.invalid && endDateRef.touched || endDateRef.dirty">
+                <p *ngIf="endDateRef.errors?.['required']" class="text-danger">End Date is required...Select One</p>
+                 </div><br><br>
     
-            <label for="targetAmount">Target Amount:</label>
-            <input type="number" id="targetAmount" name="targetAmount" [(ngModel)]="newPost.amountRequested"  #targetAmountRef="ngModel" required><br><br>
+            <label for="targetAmount" class="form-label">Target Amount:</label>
+            <input type="number" id="targetAmount" class="form-control" name="targetAmount" [(ngModel)]="newPost.amountRequested"  #targetAmountRef="ngModel" pattern="^[1-9]\d*$" required>
+            <div *ngIf="targetAmountRef.invalid && (targetAmountRef.dirty || targetAmountRef.touched)">
+                <p *ngIf="targetAmountRef.errors?.['required']" class="text-danger">Amount[numbers] is required</p>
+                <p *ngIf="targetAmountRef.errors?.['pattern']" class="text-danger">Amount must be a positive number</p>
+              </div><br><br>
 
                 
-            <label for="collectedAmount">Collected Amount:</label>
-            <input type="number" id="collectedAmount" name="collectedAmount" value=0 [(ngModel)]="newPost.amountCollected"  #collectedAmountRef="ngModel"required ><br><br>
+            <label for="collectedAmount"class="form-label">Collected Amount:</label>
+            <input type="number" id="collectedAmount" class="form-control" name="collectedAmount"  [(ngModel)]="newPost.amountCollected"  #collectedAmountRef="ngModel" pattern="^[0-9]\d*$"  value="0" readonly >
+            <div *ngIf="collectedAmountRef.invalid && (collectedAmountRef.dirty || collectedAmountRef.touched)">
+                <p *ngIf="collectedAmountRef.errors?.['required']" class="text-danger">Amount[numbers] is required</p>
+                <p *ngIf="collectedAmountRef.errors?.['pattern']" class="text-danger">Amount must be a zero or positive number</p>
+              </div><br><br>
     
-            <label for="status">Status :</label>
-            <input type="radio" name="status" value="incomplete" [(ngModel)]="newPost.status"> Incomplete
-            <input type="radio" name="status" value="complete" [(ngModel)]="newPost.status"> Complete <br><br>
+            <!-- <label for="status" class="form-label" style="padding-right: 1vw;">Status :  </label> 
+            <div>
+                <input type="radio" name="status" id="status1" value="incomplete" [(ngModel)]="newPost.status" class="form-check-input" checked> 
+                <label class="form-check-label" style="padding-right: 1vw;" for="status1" style="padding-left: 0.8vw;">Incomplete</label> 
+              </div> 
+              <div>
+                <input type="radio" name="status" id="status2" value="completed"  class="form-check-input" disabled> 
+                <label class="form-check-label" for="status2" style="padding-left: 0.8vw;">Completed</label>
+              </div> <br><br> -->
+
+
+
+            <label for="donationId" class="form-label">Donation ID:</label>
+            <input type="text" id="donationId" name="donationId" class="form-control" [(ngModel)]="newPost.donationAccountId"  #donationIdRef="ngModel" required>
+            <div *ngIf="targetAmountRef.invalid && (targetAmountRef.dirty || targetAmountRef.touched)">
+                <p *ngIf="targetAmountRef.errors?.['required']" class="text-danger">Donation Account Id [Upi Id] is required</p>
+             
+              </div><br><br>
     
-            <label for="donationId">Donation ID:</label>
-            <input type="text" id="donationId" name="donationId" [(ngModel)]="newPost.donationAccountId"  #donationIdRef="ngModel"><br><br>
-    
-            <button (click)="addNewPost()">Create</button>
+            <button (click)="addNewPost()" class="btn btn-success">Create</button>
         </form>
+    </div>
     </body>

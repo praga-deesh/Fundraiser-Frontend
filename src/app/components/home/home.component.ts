@@ -13,6 +13,7 @@ import { NavbarService } from '../../services/navbar.service';
 export class HomeComponent {
 
   private slideIndex = 0;
+  user: any;
 
   constructor(private router: Router,public navbarService: NavbarService)
    { 
@@ -22,6 +23,13 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.showSlides();
+     // Get user details from sessionStorage
+     let userData = sessionStorage.getItem('user');
+     if (userData) {
+       this.user = JSON.parse(userData);
+       console.log(this.user.id + "**");
+     }
+
   }
 
   private showSlides(): void {
@@ -39,13 +47,29 @@ export class HomeComponent {
     }
     slides[this.slideIndex - 1].style.display = "block";
     dots[this.slideIndex - 1].className += " active";
-    setTimeout(() => this.showSlides(), 2000); // Change image every 2 seconds
+    setTimeout(() => this.showSlides(), 4000); // Change image every 4 seconds
   }
 
 
 
   donateNowRedirect() {
+    if(this.user) {
+      if(this.user.role === "donor")
     this.router.navigate(['posts'])
+    }
+    else {
+      this.router.navigate(['donor-login']);
+    }
+  }
+
+  creatPostRedirect() {
+    if(this.user) {
+      if(this.user.role === "fundraiser")
+      this.router.navigate(['my-posts']);
+    }
+    else {
+      this.router.navigate(['fundraiser-login']);
+    }
   }
 
 

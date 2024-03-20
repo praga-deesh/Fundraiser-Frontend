@@ -21,6 +21,9 @@ export const donationGuard: CanActivateFn = (route, state) => {
     }
 
   }
+  else {
+    inject(Router).navigateByUrl('donor-login');
+  }
 
   return true;
 };

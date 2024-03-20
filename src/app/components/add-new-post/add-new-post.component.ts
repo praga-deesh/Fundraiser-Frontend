@@ -25,8 +25,11 @@ export class AddNewPostComponent {
  
    newPost:NewPost=new NewPost();
    postFundraiser:PostFundraiser=new PostFundraiser();
+   
 
    ngOnInit() {
+    this.newPost.status= "incomplete";
+    this.newPost.amountCollected=0;
     // Get user details from sessionStorage
     let userData = sessionStorage.getItem('user');
     if (userData) {
