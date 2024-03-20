@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Donor } from '../model/donor';
 import { Observable } from 'rxjs/internal/Observable';
+import { Donation } from '../model/donation';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class DonorService {
    
   getDonorDetails(userId: number): Observable<any> {
     console.log('User id:', userId);
-    return this.httpClient.get<Donor>(`http://localhost:8090/donor/{id}?id=${userId}`);
+    return this.httpClient.get<any>(`http://localhost:8090/donor/{id}?id=`+userId);
   }
   updateDonorName(id: number, newName: string): Observable<any> {
     console.log('Name:', newName);
@@ -44,7 +45,10 @@ export class DonorService {
   {
     return this.httpClient.delete(`http://localhost:8090/donor?id=${id}`);
   }
-  
+  getDonations(id?:number)
+  {
+    return this.httpClient.get<any>(`http://localhost:8090/donations?id=${id}`);
+  }
 }
 
 

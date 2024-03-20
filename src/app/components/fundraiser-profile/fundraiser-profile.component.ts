@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { PostService } from '../../services/post.service';
-import { Post } from '../../model/post';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef } from '@angular/core';
-import { delay } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { FundraiserService } from '../../services/fundraiser.service';
+import { Router } from '@angular/router';
+import { NavbarService } from '../../services/navbar.service';
+import { LoginbuttonService } from '../../services/loginbutton.service';
 
 @Component({
   selector: 'app-fundraiser-profile',
@@ -13,20 +13,18 @@ import { delay } from 'rxjs/operators';
   templateUrl: './fundraiser-profile.component.html',
   styleUrl: './fundraiser-profile.component.css'
 })
-export class FundraiserProfileComponent {
-  constructor(private postService: PostService,private changeDetector: ChangeDetectorRef) { }
-
+export class FundraiserProfileComponent implements OnInit {
   user: any;
-  isDeletePostDetailsVisible: boolean = true;
+  accountId:string="";
+  balance:number=0;
   message: string = "";
   errorMessage: string = "";
-  // deleteId:number;
+  password:string="";
+  newName: string = "";
+  newPassword: string = "";
+  constructor(private fundraiserService: FundraiserService,private router:Router,private navbarService:NavbarService,public loginButtonService:LoginbuttonService) { }
 
-  posts: Post[] = [];
-
-  ngOnInit(): void {
-    // Initially fetch all posts on initialization
-    // this.getPosts();
+  ngOnInit() {
     // Get user details from sessionStorage
     let userData = sessionStorage.getItem('user');
     if (userData) {
@@ -34,79 +32,96 @@ export class FundraiserProfileComponent {
       console.log(this.user.id + "**");
     }
   }
-
-  getPostsByFundRaiserId(): void {
-    this.postService.getPostsByFundraiserId(this.user.id)
-      .subscribe(
-        posts => {
-          this.posts = posts;
-
-          console.log(this.posts);
-
-          for (let post of this.posts) {
-            console.log(post.id);
-            console.log(post.title);
-          }
-
-
+  getFundraiserDetails() {
+    this.fundraiserService.getFundraiserDetails(this.user.id).subscribe(
+      {
+        next: (data) => {
+          console.log(data);
+          this.user = data;
+          this.message = "";
+          this.errorMessage = "";
+        },
+        error: (err) => {
+          console.log(err);
+          this.errorMessage = "Couldn't get details";
+          this.message = "";
         }
-      );
-    console.log(this.user.id);
-    console.log(this.posts);
+      }
+    )
   }
 
+  updateFundraiserName() {
+    this.fundraiserService.updateFundraiserName(this.user.id, this.newName).subscribe(
+      {
+        next: (data) => {
+          console.log(data);
+          this.message = "Name updated successfully!!!";
+          this.getFundraiserDetails();
+          this.isUpdateTabVisibile=false;
+          this.errorMessage = "";
+        },
+        error: (err) => {
+          console.log(err);
+          this.errorMessage = "Updation failed";
+          this.isUpdateTabVisibile=false;
+          this.message = "";
+        }
+      }
+    )
+  }
+  updateFundraiserPassword(){
+    this.fundraiserService.updateFundraiserPassword(this.user.id, this.newPassword).subscribe(
+      {
+        next: (data) => {
+          console.log(data);
+          this.message = "Password updated successfully!!!";
+          this.isUpdateTabVisibile=false;
+          this.errorMessage = "";
+        },
+        error: (err) => {
+          console.log(err);
+          this.errorMessage = "Updation failed";
+          this.isUpdateTabVisibile=false;
+          this.message = "";
+        }
+      }
+    )
+  }
+  isUpdateTabVisibile:boolean=false;
+
+  updateFundraiserDetails()
+  {
+    this.isUpdateTabVisibile=true;
+    console.log("hol");
+  }
+
+  logout()
+  {
+    sessionStorage.clear();
+    this.router.navigateByUrl('home');
+    this.loginButtonService.showLoginButton();
+  }
 
   
-  // deletePostById(postId: number): void {
-  //   this.postService.deletePostById(postId)
-  //     .subscribe({
-  //       next: () => {
-  //         console.log(postId+"****");
-  //         this.isDeletePostDetailsVisible = false;
-  //         // this.posts = this.posts.filter(post => post.id !== postId);
-  //         // this.getPostsByFundRaiserId();
-  //       },
-  //       error: error => {
-  //         // this.isDeletePostDetailsVisible = false;
-  //         console.log(postId+"****");
-  //         console.error('Error:', error);
-  //       }
-  //     });
-  // }
 
-  deletePostById(postId: number): void {
-    this.postService.deletePostById(postId)
-    .pipe(delay(1000))
-      .subscribe({
-        next: () => {
-          console.log(postId+"****");
-          this.isDeletePostDetailsVisible = false;
-          // this.posts = this.posts.filter(post => post.id !== postId);
-          this.getPostsByFundRaiserId();
-          this.changeDetector.detectChanges();
+  deleteFundraiserAccount()
+  {
+    sessionStorage.clear();
+    this.router.navigateByUrl('home');
+    this.loginButtonService.showLoginButton();
+    this.fundraiserService.deleteFundraiser(this.user.id).subscribe(
+      {
+        next: (data:any) => {
+          console.log(data);
+          this.message = "Account deleted successfully!!!";
+          this.errorMessage = "";
         },
-        error: error => {
-          console.log(postId+"####");
-          console.error('Error:', error);
-          if (error.status === 200) {
-            console.log('Post with id ' + postId + ' does not exist');
-          }
+        error: (err:any) => {
+          console.log(err);
+          this.errorMessage = "Failed";
+          this.message = "";
         }
-      });
+      }
+    )
   }
-
-
-
-  deletePostVisibility(): void {
-    this.isDeletePostDetailsVisible = true;
-  }
-
-  isPostVisible: boolean = false;
-  showPostTab() {
-    this.isPostVisible = true;
-  }
-  hidePostTab() {
-    this.isPostVisible = false;
-  }
-
 }

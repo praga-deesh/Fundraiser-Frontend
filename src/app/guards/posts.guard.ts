@@ -22,7 +22,7 @@ export class postsGuard implements CanActivate {
         }
       }
     } else {
-      return this.router.parseUrl('/empty');
+      return this.router.parseUrl('posts');
     }
     return true;
   }

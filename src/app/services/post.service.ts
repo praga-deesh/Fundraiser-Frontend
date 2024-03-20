@@ -21,15 +21,19 @@ export class PostService {
     return this.http.get<Post[]>('http://localhost:8090/posts/incomplete');
   }
   getPostsByCategory(category: string): Observable<Post[]> {
-    return this.http.get<Post[]>('http://localhost:8090/posts/category/' + category);
+    return this.http.get<Post[]>('http://localhost:8090/posts/' + category);
   }
 
   getPostsByTitle(title: string): Observable<Post[]> {
     return this.http.get<Post[]>('http://localhost:8090/posts/title/' + title);
   }
 
-  getPostById(postId: number): Observable<Post[]> {
-    return this.http.get<Post[]>('http://localhost:8090/posts/' + postId);
+  getPostById(postId: number): Observable<any> {
+    return this.http.get<any>('http://localhost:8090/post/' + postId);
+  }
+
+  getPostByDonationAccountId(donationAccId:string): Observable<any> {
+    return this.http.get<any>('http://localhost:8090/post/donationAccountId?accountId=post1http://localhost:8090/post/donationAccountId?accountId='+donationAccId);
   }
 
   getPostsSortedByDate(): Observable<Post[]> {

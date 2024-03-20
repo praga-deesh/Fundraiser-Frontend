@@ -30,10 +30,11 @@
 
                 
             <label for="collectedAmount">Collected Amount:</label>
-            <input type="number" id="collectedAmount" name="collectedAmount" [(ngModel)]="newPost.amountCollected"  #collectedAmountRef="ngModel"required><br><br>
+            <input type="number" id="collectedAmount" name="collectedAmount" value=0 [(ngModel)]="newPost.amountCollected"  #collectedAmountRef="ngModel"required ><br><br>
     
             <label for="status">Status :</label>
-            <input type="text" id="status" name="status" value="incomplete" [(ngModel)]="newPost.status"  #statusRef="ngModel"> <br><br>
+            <input type="radio" name="status" value="incomplete" [(ngModel)]="newPost.status"> Incomplete
+            <input type="radio" name="status" value="complete" [(ngModel)]="newPost.status"> Complete <br><br>
     
             <label for="donationId">Donation ID:</label>
             <input type="text" id="donationId" name="donationId" [(ngModel)]="newPost.donationAccountId"  #donationIdRef="ngModel"><br><br>

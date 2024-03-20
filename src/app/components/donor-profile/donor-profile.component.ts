@@ -7,6 +7,7 @@ import { Payment } from '../../model/payment';
 import { Router } from '@angular/router';
 import { NavbarService } from '../../services/navbar.service';
 import { LoginbuttonService } from '../../services/loginbutton.service';
+import { Donation } from '../../model/donation';
 @Component({
   selector: 'app-donor-profile',
   standalone: true,
@@ -33,6 +34,7 @@ export class DonorProfileComponent implements OnInit {
       this.user = JSON.parse(userData);
       console.log(this.user.id + "**");
     }
+    this.getDonations();
   }
   
   
@@ -45,7 +47,7 @@ export class DonorProfileComponent implements OnInit {
         next: (data) => {
           console.log(data);
           this.user = data;
-          this.message = "";
+          this.message = "Details displayed ";
           this.errorMessage = "";
         },
         error: (err) => {
@@ -58,6 +60,7 @@ export class DonorProfileComponent implements OnInit {
   }
 
   updateDonorName() {
+    console.log("user id : "+this.user.id)
     this.donorService.updateDonorName(this.user.id, this.newName).subscribe(
       {
         next: (data) => {
@@ -115,6 +118,9 @@ export class DonorProfileComponent implements OnInit {
         next: (data) => {
           console.log(data);
           this.message = "Account details updated successfully!!!";
+          let user={id:data.id,name:data.name,email:data.email,accountId:data.accountId,balance:data.accountBalance};
+          sessionStorage.setItem("donor",JSON.stringify(user));
+          console.log(user)
           this.isAddBankDetailsVisible=false;
           this.errorMessage = "";
         },
@@ -153,6 +159,35 @@ export class DonorProfileComponent implements OnInit {
         error: (err:any) => {
           console.log(err);
           this.errorMessage = "Failed";
+          this.message = "";
+        }
+      }
+    )
+  }
+  isViewDonationsVisible:boolean=false;
+  showDonations()
+  {
+    this.isViewDonationsVisible=true;
+  }
+  hideDonations()
+  {
+    this.isViewDonationsVisible=false;
+  }
+  donations:any[]=[];
+  getDonations()
+  {
+    console.log("user id : "+this.user.id);
+    this.donorService.getDonations(this.user.id).subscribe(
+      {
+        next: (data) => {
+          console.log(data);
+          this.message = "Details displayed ";
+          this.donations=data;
+          this.errorMessage = "";
+        },
+        error: (err) => {
+          console.log(err);
+          this.errorMessage = "Couldn't get details";
           this.message = "";
         }
       }
