@@ -36,6 +36,11 @@ export class PostService {
     return this.http.get<Post[]>('http://localhost:8090/posts/newestFirst');
   }
 
-
- 
+  getPostsByFundraiserId(fundraiserId: number):Observable<Post[]> {
+    return this.http.get<Post[]>('http://localhost:8090/post/fundraiser/' + fundraiserId);
+  }
+  deletePostById(postId: number): Observable<any> {
+    return this.http.delete(`http://localhost:8090/post/${postId}?id=${postId}`);
+    
+  }
 }
