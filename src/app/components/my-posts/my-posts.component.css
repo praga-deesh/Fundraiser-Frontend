@@ -1,4 +1,4 @@
-.post-grid {
+/* .post-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
@@ -8,4 +8,114 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
+} */
+div {
+  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+h3 {
+  color: #333;
+  margin-bottom: 20px;
+}
+h4 {
+  text-align: center;
+}
+
+h6 {
+  color: #888;
+}
+
+.button-container {
+  margin-bottom: 20px;
+  text-align: center;
+  display: flex;
+}
+
+.filter-button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+.filter-button:hover, .filter-button:focus {
+  background-color: #45a049;
+  border-color: #39843c;
+  outline: none;
+}
+
+select {
+  font-weight: bolder;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  border-color: #39843c;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Adjust the minimum size to your preference */
+  gap: 20px;
+}
+
+.post-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: white;
+  transition: transform 0.2s ease-in-out;
+  height: 100%; /* Ensure each box occupies the same height */
+}
+
+.post-box-content {
+  flex-grow: 1; /* Allow content to expand */
+}
+
+.post-box p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.post-box strong {
+  color: #333;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between; /* Spread the buttons evenly */
+}
+
+.post-box button {
+  flex-grow: 1; /* Allow buttons to expand */
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 8px;
+}
+
+.post-box button:first-child {
+  margin-right: 5px; /* Add spacing between buttons */
+}
+
+.post-box:hover {
+  transform: translateY(-5px);
 }

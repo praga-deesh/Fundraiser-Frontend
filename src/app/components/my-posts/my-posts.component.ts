@@ -85,6 +85,12 @@ export class MyPostsComponent {
   hidePostTab() {
     this.isPostVisible = false;
   }
+  confirmDelete(postId: number) {
+    if (window.confirm('Are you sure you want to delete this post?')) {
+      this.deletePostById(postId);
+      this.hidePostTab();
+    }
+  }
 
 
 }
