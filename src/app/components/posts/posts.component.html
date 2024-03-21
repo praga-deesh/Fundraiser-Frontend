@@ -1,56 +1,50 @@
 <div class="button-container">
-    
-     
-  <button class="filter-button" (click)="getPosts()">All Posts</button>
-  <button class="filter-button" (click)="getCompletedPosts()">Completed Donations</button>
-  <button class="filter-button" (click)="getIncompletedPosts()">Donatable Posts</button>
-  <button class="filter-button" (click)="getPostsSortedByDate()">Recent Posts</button>
 
-<div class="dropdown-container select-container">
-  <select name="Categories" #category (change)="onCategorySelected(category.value)">
-      <option value="">All Categories</option>
-      <option value="education">Education</option>
-      <option value="food">Food</option>
-      <option value="medical">Medical</option>
-  </select>
-</div>
+
+    <button class="filter-button" (click)="getPosts()">All Posts</button>
+    <button class="filter-button" (click)="getCompletedPosts()">Completed Donations</button>
+    <button class="filter-button" (click)="getIncompletedPosts()">Donatable Posts</button>
+    <button class="filter-button" (click)="getPostsSortedByDate()">Recent Posts</button>
+
+    <div class="dropdown-container select-container">
+        <select name="Categories" #category (change)="onCategorySelected(category.value)">
+            <option value="">All Categories</option>
+            <option value="education">Education</option>
+            <option value="food">Food</option>
+            <option value="medical">Medical</option>
+        </select>
+    </div>
 
 </div>
 
 
 <div>
-<h3>Available Posts:</h3>
-<h6 *ngIf="posts.length < 1">
-    No Products found!
-</h6>
-<div class="post-grid" *ngIf="posts.length > 0">
-    <div class="post-box" *ngFor="let post of posts">
-      <img  *ngIf="post.category === 'food'"
-            src=""
-            alt="Food Donation"
-            style="width: 100%; height: auto; object-fit: cover; margin-bottom: 10px;">
-      <img  *ngIf="post.category === 'medical'"
-            src=""
-            alt="Medical Donation"
-            style="width: 100%; height: auto; object-fit: cover; margin-bottom: 10px;">
-      <img  *ngIf="post.category === 'education'"
-            src=""
-            alt="Education Donation"
-            style="width: 100%; height: auto; object-fit: cover; margin-bottom: 10px;">
-  
-      <p><strong>Title:</strong> {{ post.title }}</p>
-      <p><strong>Category:</strong> {{ post.category }}</p>
-      <p><strong>Start Date:</strong> {{ post.startDate }}</p>
-      <p><strong>End Date:</strong> {{ post.endDate }}</p>
-      <p><strong>Amount Requested:</strong> {{ post.amountRequested }}</p>
-      <p><strong>Amount Collected:</strong> {{ post.amountCollected }}</p>
-      <p><strong>Description:</strong> {{ post.description }}</p>
-      <p><strong>Status:</strong> {{ post.status }}</p>
-      <div class="button-group">
-        <button *ngIf="post.status === 'incomplete'" (click)="redirectToTransaction(post)">Donate</button>
-        <button>View Donations</button>
-      </div>
+    <h3>Available Posts:</h3>
+    <h6 *ngIf="posts.length < 1">
+        No Products found!
+    </h6>
+    <div class="post-grid" *ngIf="posts.length > 0">
+        <div class="post-box" *ngFor="let post of posts">
+            <img *ngIf="post.category === 'food'" src="assets/images/food.jpg" alt="Food Donation"
+                style="width: 100%; height: auto; object-fit: cover; margin-bottom: 10px;">
+            <img *ngIf="post.category === 'medical'" src="assets/images/medical.jpg" alt="Medical Donation"
+                style="width: 100%; height: auto; object-fit: cover; margin-bottom: 10px;">
+            <img *ngIf="post.category === 'education'" src="assets/images/education.jpg" alt="Education Donation"
+                style="width: 100%; height: auto; object-fit: cover; margin-bottom: 10px;">
+
+            <p><strong>Title:</strong> {{ post.title }}</p>
+            <p><strong>Category:</strong> {{ post.category }}</p>
+            <p><strong>Start Date:</strong> {{ post.startDate }}</p>
+            <p><strong>End Date:</strong> {{ post.endDate }}</p>
+            <p><strong>Amount Requested:</strong> {{ post.amountRequested }}</p>
+            <p><strong>Amount Collected:</strong> {{ post.amountCollected }}</p>
+            <p><strong>Description:</strong> {{ post.description }}</p>
+            <p><strong>Status:</strong> {{ post.status }}</p>
+            <div class="button-group">
+                <button *ngIf="post.status === 'incomplete'" (click)="redirectToTransaction(post)">Donate</button>
+                <button>View Donations</button>
+            </div>
+        </div>
     </div>
-</div>
 
 </div>
