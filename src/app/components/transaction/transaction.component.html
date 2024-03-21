@@ -1,14 +1,72 @@
 <p>transaction works!</p>
+<!-- 
+<p>Title: {{ post?.title}}</p>
+<p>Category: {{ post?.category}}</p>
 
 
 <label for="transactionAmount">Donation Amount : </label>
-<input type="number" id="donateAmount" name="donateAmount" [(ngModel)]="newTransaction.amount"  #amountRef="ngModel" required>
+<input type="number" id="donateAmount" name="donateAmount" [(ngModel)]="newTransaction.amount" #amountRef="ngModel"
+    required>
 <div *ngIf="amountRef.invalid && amountRef.touched || amountRef.dirty">
     <p *ngIf="amountRef.errors?.['required']" class="text-danger">Amount is required...can't be blank</p>
 
-<button (click)="donationTransaction()"> Donate </button>
 
-<p *ngIf="errorMessage">{{errorMessage}}</p>
-</div>
-<br>
+    <label for="addComment">Comment : </label>
+    <input type="string" id="addComment" name="addComment" [(ngModel)]="newComment.commentDescription"
+        #emailRef="ngModel">
+    
+    <button (click)="donationTransaction(); addComment()" > Donate </button>
 
+    <p *ngIf="errorMessage">{{errorMessage}}</p>
+</div> -->
+
+<!-- <div class="container">
+    <h2>Transaction</h2>
+    <p>Title: {{ post?.title}}</p>
+    <p>Category: {{ post?.category}}</p>
+  
+    <form>
+      <div class="form-group">
+        <label for="donateAmount">Donation Amount:</label>
+        <input type="number" class="form-control" id="donateAmount" name="donateAmount" [(ngModel)]="newTransaction.amount" #amountRef="ngModel" required>
+        <div *ngIf="amountRef.invalid && (amountRef.touched || amountRef.dirty)" class="text-danger">
+          <p *ngIf="amountRef.errors?.['required']">Amount is required...can't be blank</p>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="addComment">Comment:</label>
+        <input type="text" class="form-control" id="addComment" name="addComment" [(ngModel)]="newComment.commentDescription" #emailRef="ngModel">
+      </div>
+  
+      <button (click)="donationTransaction(); addComment()" class="btn btn-primary">Donate</button>
+    </form>
+  
+    <p *ngIf="errorMessage" class="text-danger">{{errorMessage}}</p>
+  </div> -->
+
+
+  <div class="container my-container">
+    <h2 class="text-center"><strong>Transaction</strong></h2>
+    <p class="text-center"><strong>Title:</strong> {{ post?.title}}</p>
+    <p class="text-center"><strong>Category:</strong> {{ post?.category}}</p>
+  
+    <form class="my-form">
+      <div class="form-group">
+        <label for="donateAmount"><strong>Donation Amount:</strong></label>
+        <input type="number" class="form-control" id="donateAmount" name="donateAmount" [(ngModel)]="newTransaction.amount" #amountRef="ngModel" required>
+        <div *ngIf="amountRef.invalid && (amountRef.touched || amountRef.dirty)" class="text-danger">
+          <p *ngIf="amountRef.errors?.['required']">Amount is required...can't be blank</p>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="addComment"><strong>Comment:</strong></label>
+        <input type="text" class="form-control" id="addComment" name="addComment" [(ngModel)]="newComment.commentDescription" #emailRef="ngModel">
+      </div>
+  
+      <button (click)="donationTransaction(); addComment()" class="btn btn-primary">Donate</button>
+    </form>
+  
+    <p *ngIf="errorMessage" class="text-danger">{{errorMessage}}</p>
+  </div>

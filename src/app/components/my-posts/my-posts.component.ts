@@ -48,18 +48,14 @@ export class MyPostsComponent {
           this.posts = posts;
 
           // console.log(this.posts);
-
-          // for (let post of this.posts) {
-          //   console.log(post.id);
-          //   console.log(post.title);
-          // }
-
-
         }
       );
-    // console.log(this.user.id);
-    // console.log(this.posts);
+    
   }
+
+  
+
+
   deletePostById(postId: number): void {
     this.postService.deletePostById(postId)
       .subscribe({
