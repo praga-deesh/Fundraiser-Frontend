@@ -1,27 +1,120 @@
 .post-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-  }
-  
-  .post-box {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-  }
- 
-  
-  .filter-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .filter-button:hover {
-    background-color: #45a049;
-  }
- 
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.post-box {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+
+.filter-button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.filter-button:hover {
+  background-color: #45a049;
+}
+
+
+
+/* /// */
+
+.container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  font-size: 24px;
+  color: #333333;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+p {
+  margin: 5px 0;
+}
+
+
+.updateLabel {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.updateInput {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.text-danger {
+  color: #ff0000;
+}
+
+.logoutDelete {
+  padding-left: 40px;
+
+}
+
+#deleteButton {
+  margin-left: 50px;
+}
+
+#logoutButton {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+h2 {
+  padding-left: 100px;
+}
+
+/* /// */
+.threeButtons {
+  padding-left: 500px;
+}
+
+#bankButton {
+  margin-left: 50px;
+}
+
+#donationeButton {
+  margin-left: 50px;
+}
+
+.updateBankButton {
+  padding-left: 80px;
+}
+
+.container2 {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

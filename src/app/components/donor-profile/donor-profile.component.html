@@ -1,136 +1,118 @@
-<p>donor-profile works!</p>
- 
-<h2>Donor Profile</h2>
-  <p>Name: {{ user.name }}</p>
-  <p>Email: {{ user.email }}</p>
+<div class="container">
+  <div id="donorProfile" class="form-group">
 
-<div>
-  <button (click)="updateDonorDetails()">Update</button>
-  <button (click)="addBankDetails()">Add Bank Details</button>
-  <button (click)="logout()">Logout</button>
-  <button (click)="deleteDonorAccount()">Delete Account</button>
-  <button (click)="getDonations()" (click)="showDonations()">View Donations</button>
-  
+    <h2>Donor Profile</h2>
+
+    <label class="col-form-label-lg">Name: </label>
+    <p class="form-control">{{ user.name }}</p>
+    <label class="col-form-label-lg">Email: </label>
+    <p class="form-control"> {{ user.email }}</p><br>
+
+    <div class="logoutDelete">
+      <button id="logoutButton" class="btn btn-danger" (click)="logout()">Logout</button>
+      <button id="deleteButton" class="btn btn-danger" (click)="deleteDonorAccount()">Delete Account</button>
+    </div>
+
+  </div>
 </div>
 
 <br>
 
+<div class="threeButtons">
+  <button id="updateButton" class="btn btn-secondary" (click)="updateDonorDetails()">Update</button>
+  <button id="bankButton" class="btn btn-success" (click)="addBankDetails()">Add Bank Details</button>
+  <button id="donationeButton" class="btn btn-secondary" (click)="getDonations()" (click)="showDonations()">View
+    Donations</button>
+</div>
 
-<div *ngIf="isUpdateTabVisibile">
-  <!-- <div *ngIf="message" class="alert alert-success">
-    <p>{{message}}</p>
-  </div>
-  
-  <div *ngIf="errorMessage" class="alert alert-danger"> 
-    <p>{{errorMessage}}</p>
-  </div> -->
-
-
-  <table>
-    <tr>
-      <label for="donorName">Name:</label>
-      <input type="text" id="donorName" name="donorName" [(ngModel)]="newName" #nameRef="ngModel" pattern="[A-Za-z]{3,}"
-        required>
-      <div *ngIf="nameRef.invalid && nameRef.touched || nameRef.dirty">
-        <p *ngIf="nameRef.errors?.['required']" class="text-danger">Name is required...can't be blank</p>
-        <p *ngIf="nameRef.errors?.['pattern']" class="text-danger">Only characters are allowed,minimum 3 characters are
-          required</p>
-      </div>
-      <td><div id="donor-name-update">
-        <button (click)="updateDonorName()">Update Donor name</button>
-      </div></td>
-    </tr>
 <br>
-    <tr>
-      <label for="donorPassword">Password:</label>
-      <input type="password" id="donorPassword" name="donorPassword" [(ngModel)]="newPassword" #passwordRef="ngModel"
-        minlength="6" required>
-      <div *ngIf="passwordRef.invalid && passwordRef.touched || passwordRef.dirty">
-        <p *ngIf="passwordRef.errors?.['required']" class="text-danger">Password is required.</p>
-        <p *ngIf="passwordRef.errors?.['minlength']" class="text-danger">Password must contain at least 6 characters.</p>
-      </div>
-      <td>
-        <div id="donor-password-update">
-          <button (click)="updateDonorPassword()">Update Donor Password</button>
+
+<div class="container" *ngIf="isUpdateTabVisibile">
+  <div class="form-group">
+    <table>
+      <tr>
+        <label class="updateLabel" for="donorName">Name:</label>
+        <input type="text" id="donorName" class="updateInput" name="donorName" [(ngModel)]="newName" #nameRef="ngModel"
+          pattern="[A-Za-z]{3,}" required>
+        <div *ngIf="nameRef.invalid && nameRef.touched || nameRef.dirty">
+          <p *ngIf="nameRef.errors?.['required']" class="text-danger">Name is required...can't be blank</p>
+          <p *ngIf="nameRef.errors?.['pattern']" class="text-danger">Only characters are allowed,minimum 3 characters
+            are
+            required</p>
         </div>
-      </td>
-    </tr>
-  </table>
+        <td>
+          <div id="donor-name-update">
+            <button class="btn btn-warning" (click)="updateDonorName()">Update Name</button>
+          </div>
+        </td>
+      </tr>
+      <br>
+      <tr>
+        <label class="updateLabel" for="donorPassword">Password:</label>
+        <input type="password" class="updateInput" id="donorPassword" name="donorPassword" [(ngModel)]="newPassword"
+          #passwordRef="ngModel" minlength="6" required>
+        <div *ngIf="passwordRef.invalid && passwordRef.touched || passwordRef.dirty">
+          <p *ngIf="passwordRef.errors?.['required']" class="text-danger">Password is required.</p>
+          <p *ngIf="passwordRef.errors?.['minlength']" class="text-danger">Password must contain at least 6 characters.
+          </p>
+        </div>
+        <td>
+          <div id="donor-password-update">
+            <button class="btn btn-warning" (click)="updateDonorPassword()">Update Password</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>
 
-<div *ngIf="isAddBankDetailsVisible">
 
-  <!-- <div *ngIf="message" class="alert alert-success">
-    <p>{{message}}</p>
-  </div>
-  
-  <div *ngIf="errorMessage" class="alert alert-danger"> 
-    <p>{{errorMessage}}</p>
-  </div> -->
+<div class="container" *ngIf="isAddBankDetailsVisible">
+  <div class="form-group">
+    <label class="updateLabel" for="accountId">Account Id: </label>
+    <input class="updateInput" type="text" name="accountId" id="accountId" [(ngModel)]="accountId"
+      #accountIdRef="ngModel" required>
+    <div *ngIf="accountIdRef.invalid && accountIdRef.touched || accountIdRef.dirty">
+      <p *ngIf="accountIdRef.errors?.['required']" class="text-danger">AccountId is required...can't be blank</p>
+    </div>
+    <br>
 
-  <label for="accountId">Account Id: </label>
-  <input type="text" name="accountId" id="accountId" [(ngModel)]="accountId" #accountIdRef="ngModel" required> 
-  <div *ngIf="accountIdRef.invalid && accountIdRef.touched || accountIdRef.dirty">
-    <p *ngIf="accountIdRef.errors?.['required']" class="text-danger">AccountId is required...can't be blank</p>
-  </div>
-  <br>
-
-  <label for="balance">Balance: </label>
-  <input type="number" name="balance" id="balance" [(ngModel)]="balance" #balanceRef="ngModel" required> 
-  <div *ngIf="balanceRef.invalid && balanceRef.touched || balanceRef.dirty">
-    <p *ngIf="balanceRef.errors?.['required']" class="text-danger">Amount should not be negative</p>
-  </div>
-  <br>
-  <button (click)="updateBankDetails()">Update Bank Details </button>
-</div>
-
-<div *ngIf="isViewDonationsVisible">
-  <div class="post-grid" *ngIf=" donations.length>0">
-    <div class="post-box" *ngFor="let donation of donations">
-      <p><strong>From account:</strong>{{donation.fromAccountid}}</p>
-      <p><strong>To account:</strong>{{donation.donatedAccountId}}</p>
-      <p><strong>Post Id:</strong>{{donation.donatedPostId}}</p>
-      <p><strong>Amount:</strong>{{donation.amount}}</p>
-      <p><strong>paymentDateTime:</strong>{{donation.paymentDateTime}}</p>
-      <p><strong>status:</strong>{{donation.status}}</p>
+    <label class="updateLabel" for="balance">Balance: </label>
+    <input type="number" name="balance" class="updateInput" id="balance" [(ngModel)]="balance" #balanceRef="ngModel"
+      required>
+    <div *ngIf="balanceRef.invalid && balanceRef.touched || balanceRef.dirty">
+      <p *ngIf="balanceRef.errors?.['required']" class="text-danger">Amount should not be negative</p>
+    </div>
+    <br>
+    <div class="updateBankButton">
+      <button id="updateBankButton" class="btn btn-warning" (click)="updateBankDetails()">Update Bank Details </button>
     </div>
   </div>
-  <button (click)="hideDonations()">Close</button>
-  <div *ngIf="donations.length==0">
-    <p>No transactions made.</p>
-    <button (click)="hideDonations()">Close</button>
-  </div>
 </div>
 
-<!-- <div *ngIf="isViewDonationsVisible">
-  <div class="post-grid" *ngIf=" donations.length>0">
-    <div class="post-box" *ngFor="let donation of donations">
-      <p><strong>From account:</strong>{{donation.fromAccountid}}</p>
-      <p><strong>To account:</strong>{{donation.donatedAccountId}}</p>
-      <p><strong>Post Id:</strong>{{donation.donatedPostId}}</p>
-      <p><strong>Amount:</strong>{{donation.amount}}</p>
-      <p><strong>paymentDateTime:</strong>{{donation.paymentDateTime}}</p>
-      <p><strong>status:</strong>{{donation.status}}</p>
+<div class="container2" *ngIf="isViewDonationsVisible">
+  <div class="form-group">
+    <div class="post-grid" *ngIf=" donations.length>0">
+      <div class="post-box" *ngFor="let donation of donations">
+        <p><strong>From account:</strong>{{donation.fromAccountid}}</p>
+        <p><strong>To account:</strong>{{donation.donatedAccountId}}</p>
+        <p><strong>Post Id:</strong>{{donation.donatedPostId}}</p>
+        <p><strong>Amount:</strong>{{donation.amount}}</p>
+        <p><strong>paymentDateTime:</strong>{{donation.paymentDateTime}}</p>
+        <p><strong>status:</strong>{{donation.status}}</p>
+        <div class="closeButton">
+          <button class="btn btn-danger" (click)="hideDonations()">Close</button>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div *ngIf="donations.length==0">
+      <p>No transactions made.</p>
+      <br>
+      <div class="closeButton">
+        <button class="btn btn-danger" (click)="hideDonations()">Close</button>
+      </div>
     </div>
   </div>
-  <button (click)="hideDonations()">Close</button>
-</div> -->
-
-
-
-
-
-
-
-
-
-
-  
-        
-
-
-
-
-
-
-     
+</div>
