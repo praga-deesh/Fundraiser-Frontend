@@ -9,6 +9,9 @@ h3 {
   color: #333;
   margin-bottom: 20px;
 }
+h4 {
+  text-align: center;
+}
 
 h6 {
   color: #888;
@@ -17,6 +20,7 @@ h6 {
 .button-container {
   margin-bottom: 20px;
   text-align: center;
+  display: flex;
 }
 
 .filter-button {
@@ -38,6 +42,7 @@ h6 {
 }
 
 select {
+  font-weight: bolder;
   padding: 10px 20px;
   border-radius: 5px;
   background-color: #4CAF50;
@@ -50,7 +55,7 @@ select {
 
 .post-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust the minimum size to your preference */
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Adjust the minimum size to your preference */
   gap: 20px;
 }
 

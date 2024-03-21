@@ -14,17 +14,17 @@
             
 
             <label for="title" class="form-label">Title:</label>
-            <input type="text" id="title" name="title" class="form-control" [(ngModel)]="newPost.title"  #titleRef="ngModel" pattern="[A-Za-z]{3,}" required>
+            <input type="text" id="title" name="title" class="form-control" [(ngModel)]="newPost.title"  #titleRef="ngModel" pattern="[A-Za-z ]{3,}" required>
             <div *ngIf="titleRef.invalid && titleRef.touched || titleRef.dirty">
                 <p *ngIf="titleRef.errors?.['required']" class="text-danger">Title is required...can't be blank</p>
                 <p *ngIf="titleRef.errors?.['pattern']" class="text-danger">Only characters are allowed,minimum 3 characters are required</p>
             </div><br><br>
     
             <label for="description" class="form-label">Description:</label>
-            <textarea id="description" class="form-control" name="description" [(ngModel)]="newPost.description"  #descriptionRef="ngModel" pattern="[A-Za-z]{10,}" required></textarea>
+            <textarea id="description" class="form-control" name="description" [(ngModel)]="newPost.description"  #descriptionRef="ngModel"  required></textarea>
             <div *ngIf="descriptionRef.invalid && descriptionRef.touched || descriptionRef.dirty">
-                <p *ngIf="descriptionRef.errors?.['required']" class="text-danger">Description is required...can't be blank</p>
-                <p *ngIf="descriptionRef.errors?.['pattern']" class="text-danger">Only characters are allowed,minimum 15 characters are required</p>
+              <p *ngIf="descriptionRef.errors?.['required']" class="text-danger">Description is required...can't be blank</p>
+
             </div><br><br>
     
             <label for="category" class="form-label">Category:</label>

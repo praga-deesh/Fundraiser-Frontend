@@ -1,19 +1,19 @@
 <div class="button-container">
     
-     
-  <button class="filter-button" (click)="getPosts()">All Posts</button>
-  <button class="filter-button" (click)="getCompletedPosts()">Completed Donations</button>
-  <button class="filter-button" (click)="getIncompletedPosts()">Donatable Posts</button>
-  <button class="filter-button" (click)="getPostsSortedByDate()">Recent Posts</button>
+  <button value="All Posts" class="filter-button" (click)="getPosts()">All Posts</button>
+  <select class="form-select" style="max-width: 12vw;" name="Categories" #category (change)="onCategorySelected(category.value)">
+    <option value="">All Categories</option>
+    <option value="education">Education</option>
+    <option value="food">Food</option>
+    <option value="medical">Medical</option>
+</select>
+<button value="Recent Posts" class="filter-button" (click)="getPostsSortedByDate()">Recent Posts</button>
+  <button value="Donatable Posts" class="filter-button" (click)="getIncompletedPosts()">Donatable Posts</button>
 
-<div class="dropdown-container select-container">
-  <select name="Categories" #category (change)="onCategorySelected(category.value)">
-      <option value="">All Categories</option>
-      <option value="education">Education</option>
-      <option value="food">Food</option>
-      <option value="medical">Medical</option>
-  </select>
-</div>
+  <button value="Completed Donations" class="filter-button" (click)="getCompletedPosts()">Completed Donations</button>
+
+
+
 
 </div>
 
@@ -21,7 +21,7 @@
 <div>
 <h3>Available Posts:</h3>
 <h6 *ngIf="posts.length < 1">
-    No Products found!
+    No Posts found!
 </h6>
 <div class="post-grid" *ngIf="posts.length > 0">
     <div class="post-box" *ngFor="let post of posts">
@@ -38,17 +38,19 @@
             alt="Education Donation"
             style="width: 100%; height: auto; object-fit: cover; margin-bottom: 10px;">
   
-      <p><strong>Title:</strong> {{ post.title }}</p>
+      <h4><strong>{{ post.title }}</strong></h4>
       <p><strong>Category:</strong> {{ post.category }}</p>
       <p><strong>Start Date:</strong> {{ post.startDate }}</p>
       <p><strong>End Date:</strong> {{ post.endDate }}</p>
       <p><strong>Amount Requested:</strong> {{ post.amountRequested }}</p>
       <p><strong>Amount Collected:</strong> {{ post.amountCollected }}</p>
       <p><strong>Description:</strong> {{ post.description }}</p>
-      <p><strong>Status:</strong> {{ post.status }}</p>
+      <p *ngIf="post.status === 'incomplete'" style="color: red; outline: 1px solid red; padding: 2px;"><strong>Status:</strong> {{ post.status }}</p>
+      <p *ngIf="post.status === 'completed'" style="color: green; outline: 1px solid green; padding: 2px;"><strong>Status:</strong> {{ post.status }}</p>
+      
       <div class="button-group">
-        <button *ngIf="post.status === 'incomplete'" (click)="redirectToTransaction(post)">Donate</button>
-        <button>View Donations</button>
+        <button *ngIf="post.status === 'incomplete'" (click)="redirectToTransaction(post)" class="btn btn-success">Donate</button>
+        <button (click)="redirectToViewDonations(post)" class="btn btn-warning">View Donations</button>
       </div>
     </div>
 </div>
