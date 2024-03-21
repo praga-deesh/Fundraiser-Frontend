@@ -24,9 +24,12 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
     // Initially fetch all posts on initialization
     this.getPosts();
+
+
   }
 
   getPosts(): void {
+
     this.postService.getAllPosts()
       .subscribe(posts => this.posts = posts);
   }
@@ -65,6 +68,15 @@ export class PostsComponent implements OnInit {
            post ={id:post.id,title:post.title,category:post.category,amountCollected:post.amountCollected,amountRequested:post.amountRequested,status:post.status}
            sessionStorage.setItem("post",JSON.stringify(post));
            this.router.navigateByUrl('donation-transaction');
+
+  }
+
+  redirectToViewDonations(post: Post) {
+
+    console.log(post);
+           post ={id:post.id,title:post.title,category:post.category,amountCollected:post.amountCollected,amountRequested:post.amountRequested,status:post.status}
+           sessionStorage.setItem("post",JSON.stringify(post));
+           this.router.navigateByUrl('view-donations');
 
   }
 

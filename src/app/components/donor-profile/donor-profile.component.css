@@ -1,32 +1,32 @@
 .post-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-  }
-  
-  .post-box {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-  }
- 
-  
-  .filter-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .filter-button:hover {
-    background-color: #45a049;
-  }
- 
-  
-  
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.post-box {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+
+.filter-button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.filter-button:hover {
+  background-color: #45a049;
+}
+
+
+
 /* /// */
 
 .container {
@@ -75,47 +75,42 @@ p {
   color: #ff0000;
 }
 
-.logoutDelete
-{
+.logoutDelete {
   padding-left: 40px;
-  
+
 }
 
-#deleteButton
-{
+#deleteButton {
   margin-left: 50px;
 }
 
-#logoutButton
-{
+#logoutButton {
   padding-left: 20px;
   padding-right: 20px;
 }
-h2{
+
+h2 {
   padding-left: 100px;
 }
 
 /* /// */
-.threeButtons
-{
+.threeButtons {
   padding-left: 500px;
 }
-#bankButton
-{
-  margin-left: 50px;
-}
-#donationeButton
-{
+
+#bankButton {
   margin-left: 50px;
 }
 
-.updateBankButton
-{
+#donationeButton {
+  margin-left: 50px;
+}
+
+.updateBankButton {
   padding-left: 80px;
 }
 
-.container2
-{
+.container2 {
   max-width: 700px;
   margin: 20px auto;
   padding: 20px;
@@ -123,4 +118,3 @@ h2{
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-

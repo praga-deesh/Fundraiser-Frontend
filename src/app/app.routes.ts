@@ -17,6 +17,7 @@ import { AddNewPostComponent } from './components/add-new-post/add-new-post.comp
 import { TransactionComponent } from './components/transaction/transaction.component';
 import { postGuard } from './guards/post.guard';
 import { donationGuard } from './guards/donation.guard';
+import { ViewDonationsComponent } from './components/view-donations/view-donations.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -34,6 +35,7 @@ export const routes: Routes = [
     { path:'my-posts', component:MyPostsComponent},
     { path:'add-new-post',component:AddNewPostComponent},
     { path:'donation-transaction',component:TransactionComponent, canActivate: [donationGuard] },
+    { path:'view-donations',component:ViewDonationsComponent},
     {path:'',component:HomeComponent},
     { path: '**', component: PageNotFoundComponent }
 ];
