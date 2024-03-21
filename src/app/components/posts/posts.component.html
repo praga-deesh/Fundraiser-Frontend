@@ -12,7 +12,6 @@
 
   <button value="Completed Donations" class="filter-button" (click)="getCompletedPosts()">Completed Donations</button>
 
-
 </div>
 
 
@@ -30,19 +29,20 @@
             <img *ngIf="post.category === 'education'" src="assets/images/education.jpg" alt="Education Donation"
                 style="width: 100%; height: auto; object-fit: cover; margin-bottom: 10px;">
 
-            <p><strong>Title:</strong> {{ post.title }}</p>
-            <p><strong>Category:</strong> {{ post.category }}</p>
-            <p><strong>Start Date:</strong> {{ post.startDate }}</p>
-            <p><strong>End Date:</strong> {{ post.endDate }}</p>
-            <p><strong>Amount Requested:</strong> {{ post.amountRequested }}</p>
-            <p><strong>Amount Collected:</strong> {{ post.amountCollected }}</p>
-            <p><strong>Description:</strong> {{ post.description }}</p>
-            <p><strong>Status:</strong> {{ post.status }}</p>
-            <div class="button-group">
-                <button *ngIf="post.status === 'incomplete'" (click)="redirectToTransaction(post)">Donate</button>
-                <button>View Donations</button>
-            </div>
-        </div>
-    </div>
-
-</div>
+                <h4><strong>{{ post.title }}</strong></h4>
+                <p><strong>Category:</strong> {{ post.category }}</p>
+                <p><strong>Start Date:</strong> {{ post.startDate }}</p>
+                <p><strong>End Date:</strong> {{ post.endDate }}</p>
+                <p><strong>Amount Requested:</strong> {{ post.amountRequested }}</p>
+                <p><strong>Amount Collected:</strong> {{ post.amountCollected }}</p>
+                <p><strong>Description:</strong> {{ post.description }}</p>
+                <p *ngIf="post.status === 'incomplete'" style="color: red; outline: 1px solid red; padding: 2px;"><strong>Status:</strong> {{ post.status }}</p>
+                <p *ngIf="post.status === 'completed'" style="color: green; outline: 1px solid green; padding: 2px;"><strong>Status:</strong> {{ post.status }}</p>
+                
+                <div class="button-group">
+                  <button *ngIf="post.status === 'incomplete'" (click)="redirectToTransaction(post)" class="btn btn-success">Donate</button>
+                  <button (click)="redirectToViewDonations(post)" class="btn btn-warning">View Donations</button>
+                </div>
+              </div>
+          </div>
+        
