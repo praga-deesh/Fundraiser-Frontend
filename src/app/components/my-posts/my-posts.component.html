@@ -1,28 +1,36 @@
-<p>my-posts works!</p>
-<h2>My Posts </h2> <br>
 
-<button (click)="createNewPost()">Create Posts</button>
+<button class="filter-button" (click)="createNewPost()">Create Posts</button>
 
 
-<button class="filter-button" (click)="getPostsByFundRaiserId()" (click)="showPostTab()">Get post By Id</button>
+<button class="filter-button" (click)="getPostsByFundRaiserId()" (click)="showPostTab()">View Posts</button>
+
 <div *ngIf="isDeletePostDetailsVisible">
-
 <div class="post-grid" *ngIf="posts.length > 0 && isPostVisible">
   
-  <div class="post-box" *ngFor="let post of posts" >
-      <h4>ID: {{ post.id }}</h4>
-      <p><strong>Title:</strong> {{ post.title }}</p>
-      <p><strong>Category:</strong> {{ post.category }}</p>
-      <p><strong>Start Date:</strong> {{ post.startDate }}</p>
-      <p><strong>End Date:</strong> {{ post.endDate }}</p>
-      <p><strong>Amount Requested:</strong> {{ post.amountRequested }}</p>
-      <p><strong>Amount Collected:</strong> {{ post.amountCollected }}</p>
-      <p><strong>Description:</strong> {{ post.description }}</p>
-      <p><strong>Status:</strong> {{ post.status }}</p>
-      <!-- <p *ngIf="post.status === 'incomplete'"><button>Donate</button></p> -->
-      <button class="filter-button" (click)="post.id !== undefined && deletePostById(post.id)" (click)="hidePostTab()">Delete</button>
-     
+  <div class="post-box" *ngFor="let post of posts">
+      <img *ngIf="post.category === 'food'" src="assets/images/food .jpg" alt="Food Donation"
+          style="width: 100%; height: auto; object-fit: cover; margin-bottom: 10px;">
+      <img *ngIf="post.category === 'medical'" src="assets/images/medical.jpg" alt="Medical Donation"
+          style="width: 100%; height: auto; object-fit: cover; margin-bottom: 10px;">
+      <img *ngIf="post.category === 'education'" src="assets/images/education2.png" alt="Education Donation"
+          style="width: 100%; height: auto; object-fit: cover; margin-bottom: 10px;">
+
+          <h4><strong>{{ post.title }}</strong></h4>
+          <p><strong>Category:</strong> {{ post.category }}</p>
+          <p><strong>Start Date:</strong> {{ post.startDate }}</p>
+          <p><strong>End Date:</strong> {{ post.endDate }}</p>
+          <p><strong>Amount Requested:</strong> {{ post.amountRequested }}</p>
+          <p><strong>Amount Collected:</strong> {{ post.amountCollected }}</p>
+          <p><strong>Description:</strong> {{ post.description }}</p>
+          <p *ngIf="post.status === 'incomplete'" style="color: red; outline: 1px solid red; padding: 2px;"><strong>Status:</strong> {{ post.status }}</p>
+          <p *ngIf="post.status === 'completed'" style="color: green; outline: 1px solid green; padding: 2px;"><strong>Status:</strong> {{ post.status }}</p>
+          
+          <div class="button-group">
+            <!-- <button class="filter-button" class="btn btn-danger" (click)="post.id !== undefined && deletePostById(post.id)" (click)="hidePostTab()">Delete</button> -->
+            <button class="filter-button" class=" btn btn-danger" (click)="post.id !== undefined && confirmDelete(post.id)">Delete</button>
+          </div>
+        </div>
+    </div>
   </div>
-</div>
 
 
