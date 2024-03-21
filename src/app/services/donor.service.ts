@@ -47,7 +47,7 @@ export class DonorService {
   }
   getDonations(id?:number)
   {
-    return this.httpClient.get<any>(`http://localhost:8090/donations?id=${id}`);
+    return this.httpClient.get<any>(`http://localhost:8090/donations?donorId=${id}`);
   }
 }
 
