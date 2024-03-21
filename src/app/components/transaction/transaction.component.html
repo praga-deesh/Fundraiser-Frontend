@@ -64,9 +64,10 @@
         <label for="addComment"><strong>Comment:</strong></label>
         <input type="text" class="form-control" id="addComment" name="addComment" [(ngModel)]="newComment.commentDescription" #emailRef="ngModel">
       </div>
-  
+      <br>
+    
       <button (click)="donationTransaction(); addComment()" class="btn btn-primary">Donate</button>
-    </form>
+    
   
     <p *ngIf="errorMessage" class="text-danger">{{errorMessage}}</p>
-  </div>
+ 
