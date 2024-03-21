@@ -1,4 +1,18 @@
-<p>view-donations works!</p>
-<div>
-    
+<h3>Donations : </h3> <br> <br>
+<div class="parent-box">
+    <div class="details-box">
+<div class="post-grid" *ngIf="donations.length > 0">
+    <div class="post-box" *ngFor="let donation of donations">
+        <h4><strong> ₹ {{ donation.amount }}</strong></h4>
+        <p>By :<strong>{{ donation.donors?.name }}</strong></p>
+        <p>on :{{ donation.paymentDateTime }}</p>
+    </div>
+ </div>
+
+ <div class="post-grid" *ngIf="commentts.length > 0">
+    <div class="post-box" *ngFor="let commentt of commentts">
+        <p> Comment : <strong> {{ commentt.commentDescription }}</strong></p>
+    </div>
+ </div>
+</div>
 </div>
