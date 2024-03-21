@@ -1,19 +1,17 @@
 <div class="button-container">
+    
+  <button value="All Posts" class="filter-button" (click)="getPosts()">All Posts</button>
+  <select class="form-select" style="max-width: 12vw;" name="Categories" #category (change)="onCategorySelected(category.value)">
+    <option value="">All Categories</option>
+    <option value="education">Education</option>
+    <option value="food">Food</option>
+    <option value="medical">Medical</option>
+</select>
+<button value="Recent Posts" class="filter-button" (click)="getPostsSortedByDate()">Recent Posts</button>
+  <button value="Donatable Posts" class="filter-button" (click)="getIncompletedPosts()">Donatable Posts</button>
 
+  <button value="Completed Donations" class="filter-button" (click)="getCompletedPosts()">Completed Donations</button>
 
-    <button class="filter-button" (click)="getPosts()">All Posts</button>
-    <button class="filter-button" (click)="getCompletedPosts()">Completed Donations</button>
-    <button class="filter-button" (click)="getIncompletedPosts()">Donatable Posts</button>
-    <button class="filter-button" (click)="getPostsSortedByDate()">Recent Posts</button>
-
-    <div class="dropdown-container select-container">
-        <select name="Categories" #category (change)="onCategorySelected(category.value)">
-            <option value="">All Categories</option>
-            <option value="education">Education</option>
-            <option value="food">Food</option>
-            <option value="medical">Medical</option>
-        </select>
-    </div>
 
 </div>
 
