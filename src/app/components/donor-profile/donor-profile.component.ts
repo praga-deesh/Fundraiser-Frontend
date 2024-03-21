@@ -142,8 +142,13 @@ export class DonorProfileComponent implements OnInit {
     this.loginButtonService.showLoginButton();
   }
 
-  
-
+  confirmDelete()
+  {
+    if(window.confirm('Are you sure you want to delete your account??'))
+    {
+      this.deleteDonorAccount();
+    }
+  }
   deleteDonorAccount()
   {
     sessionStorage.clear();

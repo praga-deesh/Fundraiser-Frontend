@@ -10,7 +10,7 @@
 
     <div class="logoutDelete">
       <button id="logoutButton" class="btn btn-danger" (click)="logout()">Logout</button>
-      <button id="deleteButton" class="btn btn-danger" (click)="deleteDonorAccount()">Delete Account</button>
+      <button id="deleteButton" class="btn btn-danger" (click)="confirmDelete()">Delete Account</button>
     </div>
 
   </div>
@@ -36,9 +36,7 @@
           pattern="[A-Za-z]{3,}" required>
         <div *ngIf="nameRef.invalid && nameRef.touched || nameRef.dirty">
           <p *ngIf="nameRef.errors?.['required']" class="text-danger">Name is required...can't be blank</p>
-          <p *ngIf="nameRef.errors?.['pattern']" class="text-danger">Only characters are allowed,minimum 3 characters
-            are
-            required</p>
+          <p *ngIf="nameRef.errors?.['pattern']" class="text-danger">Only characters are allowed,minimum 3 characters are required</p>
         </div>
         <td>
           <div id="donor-name-update">
@@ -100,10 +98,13 @@
         <p><strong>Amount:</strong>{{donation.amount}}</p>
         <p><strong>paymentDateTime:</strong>{{donation.paymentDateTime}}</p>
         <p><strong>status:</strong>{{donation.status}}</p>
-        <div class="closeButton">
-          <button class="btn btn-danger" (click)="hideDonations()">Close</button>
-        </div>
+        
       </div>
+    </div>
+    <br>
+    
+    <div class="closeButton">
+      <button class="btn btn-danger" (click)="hideDonations()">Close</button>
     </div>
     <br>
 
