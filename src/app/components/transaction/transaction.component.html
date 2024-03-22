@@ -1,4 +1,4 @@
-<p>transaction works!</p>
+
 <!-- 
 <p>Title: {{ post?.title}}</p>
 <p>Category: {{ post?.category}}</p>
@@ -62,11 +62,11 @@
   
       <div class="form-group">
         <label for="addComment"><strong>Comment:</strong></label>
-        <input type="text" class="form-control" id="addComment" name="addComment" [(ngModel)]="newComment.commentDescription" #emailRef="ngModel">
+        <input type="text" class="form-control" id="addComment" name="addComment" [(ngModel)]="newComment.commentDescription" #emailRef="ngModel" required>
       </div>
       <br>
     
-      <button (click)="donationTransaction(); addComment()" class="btn btn-primary">Donate</button>
+      <button (click)="donationTransaction()" class="btn btn-primary">Donate</button>
     
   
     <p *ngIf="errorMessage" class="text-danger">{{errorMessage}}</p>

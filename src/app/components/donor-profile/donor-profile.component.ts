@@ -148,6 +148,10 @@ export class DonorProfileComponent implements OnInit {
     {
       this.deleteDonorAccount();
     }
+    else
+    {
+      window.close();
+    }
   }
   deleteDonorAccount()
   {

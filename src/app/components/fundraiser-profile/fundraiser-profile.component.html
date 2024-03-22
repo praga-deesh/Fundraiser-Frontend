@@ -1,25 +1,34 @@
-<p>fundraiser-profile works!</p>
-<h2>Fundraiser Pr</h2>
-<p>Name: {{ user.name }}</p>
-<p>Email: {{ user.email }}</p>
+<div class="container">
+  <div id="donorProfile" class="form-group">
 
-<div>
-<button (click)="updateFundraiserDetails()">Update</button>
+<h2>Fundraiser Profile</h2>
 
-<button (click)="logout()">Logout</button>
-<button (click)="deleteFundraiserAccount()">Delete Account</button>
+<label for="fundraiserName" class="col-form-label-lg"></label>
+<p class="form-control">{{ user.name }}</p>
+<label for="fundraiserEmail" class="col-form-label-lg"></label>
+<p class="form-control">{{ user.email }}</p> <br>
+
+
+<button (click)="updateFundraiserDetails()" class="btn btn-secondary" style="margin-left: 8vw;">Update</button> <br><br>
+
+<div class="logoutDelete">
+<button (click)="logout()" class="btn btn-danger" style="margin-right: 2vw;">Logout</button>
+<button (click)="deleteFundraiserAccount()" class="btn btn-danger" style="margin-left: 2vw;">Delete Account</button>
+</div>
 
 </div>
+</div>
+
 
 <br>
 
 
-<div *ngIf="isUpdateTabVisibile">
-
+<div class="container" *ngIf="isUpdateTabVisibile">
+  <div class="form-group">
   <table>
     <tr>
-      <label for="fundraiserName">Name:</label>
-      <input type="text" id="fundraiserName" name="fundraiserName" [(ngModel)]="newName" #nameRef="ngModel" pattern="[A-Za-z]{3,}"
+      <label  class="updateLabel" for="fundraiserName">Name:</label>
+      <input type="text" class="updateInput" id="fundraiserName" name="fundraiserName" [(ngModel)]="newName" #nameRef="ngModel" pattern="[A-Za-z]{3,}"
         required>
       <div *ngIf="nameRef.invalid && nameRef.touched || nameRef.dirty">
         <p *ngIf="nameRef.errors?.['required']" class="text-danger">Name is required...can't be blank</p>
@@ -27,13 +36,13 @@
           required</p>
       </div>
       <td><div id="fundraiser-name-update">
-        <button (click)="updateFundraiserName()">Update Fundraiser name</button>
+        <button (click)="updateFundraiserName()" class="btn btn-warning" >Update Name</button>
       </div></td>
     </tr>
 <br>
     <tr>
-      <label for="fundraiserPassword">Password:</label>
-      <input type="password" id="fundraiserPassword" name="fundraiserPassword" [(ngModel)]="newPassword" #passwordRef="ngModel"
+      <label  class="updateLabel" for="fundraiserPassword">Password:</label>
+      <input type="password" class="updateInput" id="fundraiserPassword" name="fundraiserPassword" [(ngModel)]="newPassword" #passwordRef="ngModel"
         minlength="6" required>
       <div *ngIf="passwordRef.invalid && passwordRef.touched || passwordRef.dirty">
         <p *ngIf="passwordRef.errors?.['required']" class="text-danger">Password is required.</p>
@@ -41,9 +50,10 @@
       </div>
       <td>
         <div id="fundraiser-password-update">
-          <button (click)="updateFundraiserPassword()">Update Fundraiser Password</button>
+          <button (click)="updateFundraiserPassword()" class="btn btn-warning">Update Password</button>
         </div>
       </td>
     </tr>
   </table>
+</div>
 </div>

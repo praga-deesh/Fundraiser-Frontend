@@ -21,7 +21,7 @@
             <br>
     
             <label for="donorPassword" class="col-form-label-lg">Donor Password:</label>
-            <input type="password" id="donorPassword" name="donorPassword" [(ngModel)]="password" #passwordRef="ngModel" minlength="6" placeholder="Enter your password" class="form-control" required>
+            <input type="password" id="donorPassword" name="donorPassword" placeholder="Enter your password" [(ngModel)]="password" #passwordRef="ngModel" minlength="6" placeholder="Enter your password" class="form-control" required>
             <div *ngIf="passwordRef.invalid && passwordRef.touched || passwordRef.dirty">
                 <p *ngIf="passwordRef.errors?.['required']" class="text-danger">Password is required.</p>
                 <p *ngIf="passwordRef.errors?.['minlength']" class="text-danger">Password must contain at least 6 characters.</p>
