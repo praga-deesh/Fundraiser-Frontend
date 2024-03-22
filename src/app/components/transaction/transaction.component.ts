@@ -108,6 +108,7 @@ export class TransactionComponent {
         next: (data) => {
           console.log(data);
           this.message = "Payment Donation Successfully!!";
+          this.addComment();
           this.router.navigateByUrl('posts');
           this.errorMessage = "";
         },
@@ -131,15 +132,11 @@ export class TransactionComponent {
           console.log(data);
           console.log("Success");
           this.message = "Comment added Successfully!!";
-          this.router.navigateByUrl('posts');
-          this.errorMessage = "";
         },
         error: (err) => {
           console.log(err);
           console.log("Error");
           // this.errorMessage="Couldn't add account";
-          this.errorMessage = err.error;
-          this.message = "";
         }
       }
 
