@@ -107,7 +107,11 @@ h2 {
 }
 
 .updateBankButton {
-  padding-left: 80px;
+  padding-left: 20px;
+}
+#bankCloseButton
+{
+  margin-left: 40px;
 }
 
 .container2 {

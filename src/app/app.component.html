@@ -3,7 +3,7 @@
     <ul>
       <li>
         <a routerLink='profile' 
-         routerLinkActive="active" >Profile</a>
+         routerLinkActive="active" (click)="loginbuttonService.hideLoginButton()">Profile</a>
     </li>
                 
       <li>
@@ -21,9 +21,10 @@
 </div>
 <div id="login">
   <li>
-    <a routerLink='donor-login'  routerLinkActive="active"  *ngIf="loginbuttonService.isLoginButtonVisible" (click)="loginbuttonService.hideLoginButton()">Login</a> 
+    <a routerLink='donor-login'  routerLinkActive="active" *ngIf="loginbuttonService.isLoginButtonVisible" (click)="loginbuttonService.hideLoginButton()">Login</a> 
 </li>
 </div>
+
 <div>
 <router-outlet></router-outlet>
 </div>

@@ -19,7 +19,7 @@ import { Donation } from '../../model/donation';
 export class DonorProfileComponent implements OnInit {
   user: any;
   accountId:string="";
-  balance:number=0;
+  accountBalance:number=0;
   message: string = "";
   errorMessage: string = "";
   password:string="";
@@ -67,7 +67,7 @@ export class DonorProfileComponent implements OnInit {
           console.log(data);
           this.message = "Name updated successfully!!!";
           this.getDonorDetails();
-          this.isUpdateTabVisibile=false;
+          // this.isUpdateTabVisibile=false;
           this.errorMessage = "";
         },
         error: (err) => {
@@ -85,7 +85,7 @@ export class DonorProfileComponent implements OnInit {
         next: (data) => {
           console.log(data);
           this.message = "Password updated successfully!!!";
-          this.isUpdateTabVisibile=false;
+          // this.isUpdateTabVisibile=false;
           this.errorMessage = "";
         },
         error: (err) => {
@@ -98,14 +98,31 @@ export class DonorProfileComponent implements OnInit {
     )
   }
   isUpdateTabVisibile:boolean=false;
+  showUpdateTab()
+  {
+    this.isUpdateTabVisibile=true;
+  }
+  hideUpdateTab()
+  {
+    this.isUpdateTabVisibile=false;
+  }
 
   updateDonorDetails()
   {
-    this.isUpdateTabVisibile=true;
+    this.showUpdateTab();
     console.log("hol");
   }
   isAddBankDetailsVisible:boolean=false;
 
+  showBankTab()
+  {
+    this.isAddBankDetailsVisible=true;
+  }
+
+  hideBankTab()
+  {
+    this.isAddBankDetailsVisible=false;
+  }
   addBankDetails()
   {
     this.isAddBankDetailsVisible=true;
@@ -113,7 +130,7 @@ export class DonorProfileComponent implements OnInit {
 
   updateBankDetails()
   {
-    this.donorService.updateBankDetails(this.user.id,this.accountId,this.balance).subscribe(
+    this.donorService.updateBankDetails(this.user.id,this.accountId,this.accountBalance).subscribe(
       {
         next: (data) => {
           console.log(data);
@@ -121,6 +138,9 @@ export class DonorProfileComponent implements OnInit {
           let user={id:data.id,name:data.name,email:data.email,accountId:data.accountId,balance:data.accountBalance};
           sessionStorage.setItem("user",JSON.stringify(user));
           console.log(user)
+          this.accountId=this.user.accountId;
+          this.accountBalance=this.user.balance;
+          this.showAccountDetails();
           this.isAddBankDetailsVisible=false;
           this.errorMessage = "";
         },
@@ -138,7 +158,11 @@ export class DonorProfileComponent implements OnInit {
   logout()
   {
     sessionStorage.clear();
-    this.router.navigateByUrl('home');
+    this.message="Logged out successfully!!";
+    setTimeout(() => {
+      this.message = '';
+      this.router.navigateByUrl('home'); 
+    }, 2000);
     this.loginButtonService.showLoginButton();
   }
 
@@ -156,13 +180,16 @@ export class DonorProfileComponent implements OnInit {
   deleteDonorAccount()
   {
     sessionStorage.clear();
-    this.router.navigateByUrl('home');
     this.loginButtonService.showLoginButton();
     this.donorService.deleteDonorAccount(this.user.id).subscribe(
       {
         next: (data:any) => {
           console.log(data);
           this.message = "Account deleted successfully!!!";
+          setTimeout(() => {
+            this.message = '';
+            this.router.navigateByUrl('home'); // Navigate to another page
+          }, 2000);
           this.errorMessage = "";
         },
         error: (err:any) => {
@@ -201,5 +228,25 @@ export class DonorProfileComponent implements OnInit {
         }
       }
     )
+  }
+
+  isAccountDetailsVisible:boolean=false;
+  showAccountDetails()
+  {
+    this.isAccountDetailsVisible=true;
+  }
+  hideAccountDetails()
+  {
+    this.isAccountDetailsVisible=false;
+  }
+
+  isCommentVisible:boolean=true;
+  showComment()
+  {
+    this.isCommentVisible=true;
+  }
+  hideComment()
+  {
+    this.isCommentVisible=false;
   }
 }
