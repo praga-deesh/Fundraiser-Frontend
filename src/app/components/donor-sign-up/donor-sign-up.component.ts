@@ -23,7 +23,11 @@ export class DonorSignUpComponent {
         next:(data)=>{
           console.log(data);
           this.message="Registered Successfully!!";
-          this.router.navigateByUrl('donor-login');
+          setTimeout(() => {
+            this.message = '';
+            this.router.navigateByUrl('donor-login'); // Navigate to another page
+          }, 2000);
+          // this.router.navigateByUrl('donor-login');
           this.errorMessage="";
         },
         error:(err)=>{

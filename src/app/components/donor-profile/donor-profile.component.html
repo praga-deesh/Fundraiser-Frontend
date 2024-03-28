@@ -6,7 +6,19 @@
     <label class="col-form-label-lg">Name: </label>
     <p class="form-control">{{ user.name }}</p>
     <label class="col-form-label-lg">Email: </label>
-    <p class="form-control"> {{ user.email }}</p><br>
+    <p class="form-control"> {{ user.email }}</p>
+
+    <div *ngIf="user.accountId==null && isCommentVisible">
+      <label class="col-form-label-lg">Bank Details: </label>
+      <p *ngIf="user.accountId==null">pls add bank details.</p><br>
+    </div>
+    <!-- (user.accountId!=null && user.balance!==0) &&  -->
+    <div *ngIf="(user.accountId!==null && user.balance!==0) || isAccountDetailsVisible ">
+      <label class="col-form-label-lg">Account Id: </label>
+      <p class="form-control"> {{ user.accountId }}</p>
+      <label class="col-form-label-lg">Bank Balance: </label>
+      <p class="form-control"> {{ user.balance}}</p><br>
+    </div>
 
     <div class="logoutDelete">
       <button id="logoutButton" class="btn btn-danger" (click)="logout()">Logout</button>
@@ -33,14 +45,13 @@
       <tr>
         <label class="updateLabel" for="donorName">Name:</label>
         <input type="text" id="donorName" class="updateInput" name="donorName" [(ngModel)]="newName" #nameRef="ngModel"
-          pattern="[A-Za-z]{3,}" required>
+          pattern="[A-Za-z]{3,}" >
         <div *ngIf="nameRef.invalid && nameRef.touched || nameRef.dirty">
-          <p *ngIf="nameRef.errors?.['required']" class="text-danger">Name is required...can't be blank</p>
           <p *ngIf="nameRef.errors?.['pattern']" class="text-danger">Only characters are allowed,minimum 3 characters are required</p>
         </div>
         <td>
           <div id="donor-name-update">
-            <button class="btn btn-warning" (click)="updateDonorName()">Update Name</button>
+            <button class="btn btn-warning" (click)="updateDonorName()" (click)="hideUpdateTab()">Update Name</button>
           </div>
         </td>
       </tr>
@@ -48,15 +59,14 @@
       <tr>
         <label class="updateLabel" for="donorPassword">Password:</label>
         <input type="password" class="updateInput" id="donorPassword" name="donorPassword" [(ngModel)]="newPassword"
-          #passwordRef="ngModel" minlength="6" required>
+          #passwordRef="ngModel" minlength="6" >
         <div *ngIf="passwordRef.invalid && passwordRef.touched || passwordRef.dirty">
-          <p *ngIf="passwordRef.errors?.['required']" class="text-danger">Password is required.</p>
           <p *ngIf="passwordRef.errors?.['minlength']" class="text-danger">Password must contain at least 6 characters.
           </p>
         </div>
         <td>
           <div id="donor-password-update">
-            <button class="btn btn-warning" (click)="updateDonorPassword()">Update Password</button>
+            <button class="btn btn-warning" (click)="updateDonorPassword()" (click)="hideUpdateTab()">Update Password</button>
           </div>
         </td>
       </tr>
@@ -64,29 +74,6 @@
   </div>
 </div>
 
-
-<div class="container" *ngIf="isAddBankDetailsVisible">
-  <div class="form-group">
-    <label class="updateLabel" for="accountId">Account Id: </label>
-    <input class="updateInput" type="text" name="accountId" id="accountId" [(ngModel)]="accountId"
-      #accountIdRef="ngModel" required>
-    <div *ngIf="accountIdRef.invalid && accountIdRef.touched || accountIdRef.dirty">
-      <p *ngIf="accountIdRef.errors?.['required']" class="text-danger">AccountId is required...can't be blank</p>
-    </div>
-    <br>
-
-    <label class="updateLabel" for="balance">Balance: </label>
-    <input type="number" name="balance" class="updateInput" id="balance" [(ngModel)]="balance" #balanceRef="ngModel"
-      required>
-    <div *ngIf="balanceRef.invalid && balanceRef.touched || balanceRef.dirty">
-      <p *ngIf="balanceRef.errors?.['required']" class="text-danger">Amount should not be negative</p>
-    </div>
-    <br>
-    <div class="updateBankButton">
-      <button id="updateBankButton" class="btn btn-warning" (click)="updateBankDetails()">Update Bank Details </button>
-    </div>
-  </div>
-</div>
 
 <div class="container2" *ngIf="isViewDonationsVisible">
   <div class="form-group">
@@ -98,15 +85,15 @@
         <p><strong>Amount:</strong>{{donation.amount}}</p>
         <p><strong>paymentDateTime:</strong>{{donation.paymentDateTime}}</p>
         <p><strong>status:</strong>{{donation.status}}</p>
-        
+        <div class="closeButton">
+          <button class="btn btn-danger" (click)="hideDonations()">Close</button>
+        </div>
+        <br>
       </div>
     </div>
     <br>
     
-    <div class="closeButton">
-      <button class="btn btn-danger" (click)="hideDonations()">Close</button>
-    </div>
-    <br>
+    
 
     <div *ngIf="donations.length==0">
       <p>No transactions made.</p>
@@ -117,3 +104,29 @@
     </div>
   </div>
 </div>
+
+
+<div class="container" *ngIf="isAddBankDetailsVisible">
+  <div class="form-group">
+    <label class="updateLabel" for="accountId">Account Id: </label>
+    <input class="updateInput" type="text" name="accountId" id="accountId" [(ngModel)]="accountId"
+      #accountIdRef="ngModel"  placeholder="Enter your account id" required>
+    <div *ngIf="accountIdRef.invalid && accountIdRef.touched || accountIdRef.dirty">
+      <p *ngIf="accountIdRef.errors?.['required']" class="text-danger">AccountId is required...can't be blank</p>
+    </div>
+    <br>
+
+    <label class="updateLabel" for="balance">Balance: </label>
+    <input type="number" name="balance" class="updateInput" id="balance" [(ngModel)]="accountBalance" #balanceRef="ngModel" placeholder="Enter your bank balance"
+      required>
+    <div *ngIf="balanceRef.invalid && balanceRef.touched || balanceRef.dirty">
+      <p *ngIf="balanceRef.errors?.['required']" class="text-danger">Amount should not be negative</p>
+    </div>
+    <br> <br>
+    <div class="updateBankButton">
+      <button id="updateBankButton" class="btn btn-warning" (click)="updateBankDetails()" (click)="showAccountDetails()" (click)="hideComment()">Update Bank Details </button>
+      <button id="bankCloseButton" class="btn btn-danger" (click)="hideBankTab()">Close</button>
+    </div>
+  </div>
+</div>
+<!-- comment -->
