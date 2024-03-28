@@ -55,6 +55,10 @@ export class TransactionComponent {
 
     this.newComment.postId = this.post.id;
 
+
+    this.newTransaction.senderId = this.user.accountId;
+
+
     const userId = this.user.id; // Assuming `this.user.id` is defined and holds the current user's ID
     this.donorService.getDonorDetails(this.user.id).subscribe(
 
@@ -62,6 +66,7 @@ export class TransactionComponent {
 
         next: (data) => {
           this.newTransaction.senderId = data.accountId;
+          console.log(data.accountId)
           console.log("donor dets : ", data);
           this.message = "";
           this.errorMessage = "";
@@ -115,6 +120,7 @@ export class TransactionComponent {
         error: (err) => {
           console.log(err);
           console.log("Error");
+          console.log("hello hi  hoooo")
           // this.errorMessage="Couldn't add account";
           this.errorMessage = err.error;
           this.message = "";

@@ -61,6 +61,7 @@ export class PostsComponent implements OnInit {
     .subscribe(posts => this.posts = posts);
     
   }
+
   
   redirectToTransaction(post: Post): void {
   
@@ -77,8 +78,16 @@ export class PostsComponent implements OnInit {
            post ={id:post.id,title:post.title,category:post.category,amountCollected:post.amountCollected,amountRequested:post.amountRequested,status:post.status}
            sessionStorage.setItem("post",JSON.stringify(post));
            this.router.navigateByUrl('view-donations');
-
   }
+
+  isPostActive(endDate: Date): boolean {
+    if(!endDate) {
+      return false;
+    }
+    const currentDate = new Date();
+    return currentDate < new Date(endDate);
+  }
+  
 
 
 

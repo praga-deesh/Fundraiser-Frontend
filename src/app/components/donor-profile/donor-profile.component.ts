@@ -171,6 +171,7 @@ export class DonorProfileComponent implements OnInit {
     if(window.confirm('Are you sure you want to delete your account??'))
     {
       this.deleteDonorAccount();
+      this.router.navigateByUrl('home'); 
     }
     else
     {
@@ -188,7 +189,7 @@ export class DonorProfileComponent implements OnInit {
           this.message = "Account deleted successfully!!!";
           setTimeout(() => {
             this.message = '';
-            this.router.navigateByUrl('home'); // Navigate to another page
+            // Navigate to another page
           }, 2000);
           this.errorMessage = "";
         },

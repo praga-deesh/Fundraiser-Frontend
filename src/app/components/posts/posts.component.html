@@ -43,9 +43,9 @@
                 <strong>Status:</strong> {{ post.status }}</p>
 
             <div class="button-group">
-                <button *ngIf="post.status === 'incomplete'" (click)="redirectToTransaction(post)"
-                    class="btn btn-success">Donate</button>
+                <button *ngIf="post.status === 'incomplete' && isPostActive(post.endDate)"
+        (click)="redirectToTransaction(post)" class="btn btn-success">Donate</button>
                 <button (click)="redirectToViewDonations(post)" class="btn btn-warning">View Donations</button>
-            </div> 
+            </div>
         </div>
     </div>
